@@ -1,0 +1,33 @@
+name: my_portfolio
+description: "A new Flutter project." 
+publish_to: 'none' 
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.10.4
+dependencies:
+  cupertino_icons: ^1.0.8
+  carousel_slider: ^5.1.1
+  flutter:
+    sdk: flutter
+  flutter_animate: ^4.5.2
+  flutter_svg: ^2.2.3
+  get: ^4.7.3
+  google_fonts: ^7.0.2
+  shared_preferences: ^2.5.3
+  url_launcher: ^6.3.2
+  url_strategy: ^0.2.0
+
+dev_dependencies:
+
+  flutter_lints: ^6.0.0
+  flutter_test:
+    sdk: flutter 
+flutter: 
+  uses-material-design: true 
+
+  assets:
+    - assets/icons/
+    - assets/images/
+    - assets/logos/
+
