@@ -6,6 +6,9 @@ class AppModel {
   final int id;
   final String title;
   final String description;
+  final String tasks;
+  final String role;
+  final List<String> stack;
   final String icon;
   final String image;
   final List<String> links;
@@ -16,6 +19,9 @@ class AppModel {
     required this.id,
     required this.title,
     required this.description,
+    required this.tasks,
+    required this.role,
+    required this.stack,
     required this.icon,
     required this.image,
     required this.links,
@@ -28,6 +34,9 @@ class AppModel {
     int? id,
     String? title,
     String? description,
+    String? tasks,
+    String? role,
+    List<String>? stack,
     String? icon,
     String? image,
     List<String>? links,
@@ -39,6 +48,9 @@ class AppModel {
       id: id ?? this.id,
       title: title ?? this.title,
       description: description ?? this.description,
+      tasks: tasks ?? this.tasks,
+      role: role ?? this.role,
+      stack: stack ?? this.stack,
       icon: icon ?? this.icon,
       image: image ?? this.image,
       links: links ?? this.links,
@@ -53,6 +65,9 @@ class AppModel {
       'id': id,
       'title': title,
       'description': description,
+      'tasks': tasks,
+      'role': role,
+      'stack': stack,
       'icon': icon,
       'image': image,
       'links': links,
@@ -67,6 +82,9 @@ class AppModel {
       id: map['id']?.toInt() ?? 0,
       title: map['title'] ?? '',
       description: map['description'] ?? '',
+      tasks: map['tasks'] ?? '',
+      role: map['role'] ?? '',
+      stack: List<String>.from(map['stack']),
       icon: map['icon'] ?? '',
       image: map['image'] ?? '',
       links: List<String>.from(map['links']),
@@ -83,7 +101,7 @@ class AppModel {
 
   @override
   String toString() {
-    return 'AppModel(id: $id, title: $title, description: $description, icon: $icon, image: $image, links: $links, category: $category, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'AppModel(id: $id, title: $title, description: $description, tasks: $tasks, role: $role, stack: $stack, icon: $icon, image: $image, links: $links, category: $category, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -94,6 +112,9 @@ class AppModel {
         other.id == id &&
         other.title == title &&
         other.description == description &&
+        other.tasks == tasks &&
+        other.role == role &&
+        listEquals(other.stack, stack) &&
         other.icon == icon &&
         other.image == image &&
         listEquals(other.links, links) &&
@@ -107,6 +128,9 @@ class AppModel {
     return id.hashCode ^
         title.hashCode ^
         description.hashCode ^
+        tasks.hashCode ^
+        role.hashCode ^
+        stack.hashCode ^
         icon.hashCode ^
         image.hashCode ^
         links.hashCode ^

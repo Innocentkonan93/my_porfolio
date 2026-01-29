@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:my_portfolio/app/configs/app_colors.dart';
-import 'package:my_portfolio/app/data/utils/constants.dart';
 import 'package:my_portfolio/app/modules/home/controllers/home_controller.dart';
 
 class ExpListView extends StatelessWidget {
@@ -13,10 +12,14 @@ class ExpListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.theme;
+    final experiences = controller.userProfile.experiences;
     return ListView.builder(
-      itemCount: user.experiences.length,
+      itemCount: experiences.length,
+      physics: const NeverScrollableScrollPhysics(),
+      primary: false,
       shrinkWrap: true,
       itemBuilder: (context, index) {
+        final experience = experiences[index];
         return Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),
               child: ListTile(
@@ -27,12 +30,12 @@ class ExpListView extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Image.asset(
-                    user.experiences[index].organizationImage,
+                    experience.organizationImage,
                     fit: BoxFit.cover,
                     alignment: Alignment.center,
                   ),
                 ),
-                contentPadding: EdgeInsets.symmetric(
+                contentPadding: const EdgeInsets.symmetric(
                   horizontal: 20,
                   vertical: 15,
                 ),
@@ -42,17 +45,17 @@ class ExpListView extends StatelessWidget {
                 ),
                 isThreeLine: true,
                 title: Text(
-                  "${user.experiences[index].organizationName} ${user.experiences[index].country}",
+                  "${experience.organizationName} ${experience.country}",
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 subtitle: Text(
-                  user.experiences[index].role,
+                  experience.role.tr,
                   style: theme.textTheme.bodyMedium,
                 ),
                 trailing: Text(
-                  "${user.experiences[index].beginDate.year} - ${user.experiences[index].endDate.year == DateTime.now().year ? 'Présent' : user.experiences[index].endDate.year}",
+                  "${experience.beginDate.year} - ${experience.endDate.year == DateTime.now().year ? 'present'.tr : experience.endDate.year}",
                   style: theme.textTheme.bodyMedium,
                 ),
               ),

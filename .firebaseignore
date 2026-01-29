@@ -1,0 +1,32 @@
+# Firebase ignore file
+# Fichiers et dossiers à ignorer lors du déploiement
+
+# Fichiers de configuration
+.git
+.gitignore
+.firebaserc
+firebase.json
+.firebase/
+
+# Dossiers de développement
+lib/
+test/
+android/
+ios/
+linux/
+macos/
+windows/
+analysis_options.yaml
+devtools_options.yaml
+pubspec.yaml
+pubspec.lock
+README.md
+
+# Fichiers de build non nécessaires
+build/**/*
+!build/web/**
+
+# Fichiers temporaires
+*.iml
+.DS_Store
+*.log

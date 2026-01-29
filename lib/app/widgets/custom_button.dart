@@ -22,9 +22,7 @@ class CustomButton extends StatelessWidget {
       icon: Icon(icon),
       label: Text(label),
       style: ElevatedButton.styleFrom(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(18.0),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
         foregroundColor: isActive ? AppColors.white : AppColors.black,
         backgroundColor: isActive ? AppColors.black : AppColors.grey,
         elevation: 0,
