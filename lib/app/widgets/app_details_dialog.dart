@@ -143,7 +143,7 @@ class AppDetailsDialog extends GetWidget<HomeController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildSectionTitle(theme, "Overview", Icons.info_outline),
+                _buildSectionTitle(theme, "overview".tr, Icons.info_outline),
                 const SizedBox(height: 12),
                 Text(
                   app.description.tr,
@@ -153,7 +153,7 @@ class AppDetailsDialog extends GetWidget<HomeController> {
                 const SizedBox(height: 32),
                 _buildSectionTitle(
                   theme,
-                  "Key Contributions",
+                  "key_contributions".tr,
                   Icons.check_circle_outline,
                 ),
                 const SizedBox(height: 12),

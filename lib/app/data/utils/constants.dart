@@ -250,6 +250,23 @@ var appsList = [
     createdAt: '2024-01-27',
     updatedAt: '2024-01-27',
   ),
+  AppModel(
+    id: 17,
+    title: 'CNDH-CI | Alerte Précoce',
+    tasks: 'tasks_cndh',
+    role: 'role_mobile_dev',
+    stack: ['Flutter', 'Dart', 'Firebase'],
+    description: 'desc_cndh',
+    icon: 'assets/icons/cndh.png',
+    image: 'assets/images/cndh.png',
+    links: [
+      "https://apps.apple.com/fr/app/cndh-rci-alerte-pr%C3%A9coce/id6742834540",
+      "https://play.google.com/store/apps/details?id=com.cndh.cndh",
+    ],
+    category: 'cat_mobile_app',
+    createdAt: '2024-01-10',
+    updatedAt: '2024-01-12',
+  ),
 ];
 
 final user = UserModel(

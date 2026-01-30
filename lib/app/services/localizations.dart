@@ -7,6 +7,7 @@ class Localization extends Translations {
       'hello': 'Hello',
       'work_with_me': 'Work With Me',
       'my_resume': 'My Resume',
+      'contact_me': 'Contact Me',
       'flutter_developer': 'Flutter Developer',
       'headline':
           'I build high-performance mobile apps with Flutter — from idea to App Store & Play Store.',
@@ -68,11 +69,14 @@ class Localization extends Translations {
           'Complete note-taking app. Cloud sync, offline mode, and intuitive data organization.',
       'tasks_portfolio':
           'Personal portfolio in Flutter Web. Responsive design, smooth animations, and Firebase Hosting.',
+      'overview': 'Overview',
+      'key_contributions': 'Key Contributions',
+      'available': 'Available',
     },
     'fr': {
       'hello': 'Bonjour',
       'work_with_me': 'Contactez-moi',
-      'my_resume': 'Mon CV',
+      'my_resume': 'CV',
       'flutter_developer': 'Développeur Flutter',
       'headline':
           'Je construis des applications mobiles haute performance avec Flutter — de l\'idée à l\'App Store et au Play Store.',
@@ -146,6 +150,9 @@ class Localization extends Translations {
           'Création complète de l\'app de notes. Synchro Cloud, mode hors ligne et organisation intuitive.',
       'tasks_portfolio':
           'Portfolio personnel en Flutter Web. Design responsive, animations fluides et Firebase Hosting.',
+      'overview': 'Aperçu',
+      'key_contributions': 'Contributions Clés',
+      'available': 'Disponible',
     },
   };
 }

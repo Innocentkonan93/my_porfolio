@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:my_portfolio/app/configs/app_colors.dart';
+import 'package:my_portfolio/app/widgets/ripple_dot.dart';
 
 import '../../controllers/home_controller.dart';
 
@@ -54,6 +55,24 @@ class ProfileHeader extends GetView<HomeController> {
                         ),
                       ],
                     ).animate().fadeIn(delay: 200.ms).slideX(begin: 0.1),
+                    Spacer(),
+                    //ripple dot
+                    TextButton.icon(
+                      onPressed: () {},
+                      label: const RippleDot(
+                        color: Color(0xFF439948),
+                        size: 10,
+                      ),
+                      icon: Text(
+                        "available".tr,
+                        style: theme.textTheme.labelSmall?.copyWith(
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.green,
+                        ),
+                      ),
+
+                      style: TextButton.styleFrom(padding: EdgeInsets.zero),
+                    ),
                   ],
                 ),
               ),

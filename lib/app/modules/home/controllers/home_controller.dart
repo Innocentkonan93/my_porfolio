@@ -74,4 +74,6 @@ class HomeController extends GetxController {
       return;
     }
   }
+
+  void downloadCV() {}
 }
