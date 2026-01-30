@@ -57,21 +57,24 @@ class ProfileHeader extends GetView<HomeController> {
                     ).animate().fadeIn(delay: 200.ms).slideX(begin: 0.1),
                     Spacer(),
                     //ripple dot
-                    TextButton.icon(
-                      onPressed: () {},
-                      label: const RippleDot(
-                        color: Color(0xFF439948),
-                        size: 10,
-                      ),
-                      icon: Text(
-                        "available".tr,
-                        style: theme.textTheme.labelSmall?.copyWith(
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.green,
+                    IgnorePointer(
+                      ignoring: true,
+                      child: TextButton.icon(
+                        onPressed: () {},
+                        label: const RippleDot(
+                          color: Color(0xFF439948),
+                          size: 10,
                         ),
-                      ),
+                        icon: Text(
+                          "available".tr,
+                          style: theme.textTheme.labelSmall?.copyWith(
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.green,
+                          ),
+                        ),
 
-                      style: TextButton.styleFrom(padding: EdgeInsets.zero),
+                        style: TextButton.styleFrom(padding: EdgeInsets.zero),
+                      ),
                     ),
                   ],
                 ),

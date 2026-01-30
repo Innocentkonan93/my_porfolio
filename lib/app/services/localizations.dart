@@ -37,6 +37,8 @@ class Localization extends Translations {
       'desc_rezi_voyage': 'The smartest apartment rental app for travelers.',
       'desc_le_juriste': 'The most trusted app for legal services.',
       'desc_zoknot': 'The smartest and most intuitive note-taking app.',
+      'desc_cndh':
+          'Real-time alert application for reporting human rights violations and electoral incidents.',
       'cat_web_app': 'Web App',
       'desc_portfolio': 'The official portfolio application of Innocent Konan.',
       'tasks_cutit':
@@ -72,11 +74,14 @@ class Localization extends Translations {
       'overview': 'Overview',
       'key_contributions': 'Key Contributions',
       'available': 'Available',
+      'tasks_cndh':
+          'Real-time reporting system, geolocation integration for incidents, offline mode support, and data privacy security.',
     },
     'fr': {
       'hello': 'Bonjour',
       'work_with_me': 'Contactez-moi',
       'my_resume': 'CV',
+      'contact_me': 'Contactez-moi',
       'flutter_developer': 'Développeur Flutter',
       'headline':
           'Je construis des applications mobiles haute performance avec Flutter — de l\'idée à l\'App Store et au Play Store.',
@@ -118,6 +123,8 @@ class Localization extends Translations {
       'desc_zoknot':
           'L\'application de prise de notes la plus intelligente et intuitive.',
       'cat_web_app': 'App Web',
+      'desc_cndh':
+          'Application d’alerte en temps réel pour signaler les violations des Droits de l’Homme et les incidents électoraux.',
       'desc_portfolio':
           'L\'application officielle de portfolio d\'Innocent Konan.',
       'tasks_cutit':
@@ -150,6 +157,8 @@ class Localization extends Translations {
           'Création complète de l\'app de notes. Synchro Cloud, mode hors ligne et organisation intuitive.',
       'tasks_portfolio':
           'Portfolio personnel en Flutter Web. Design responsive, animations fluides et Firebase Hosting.',
+      'tasks_cndh':
+          'Système de signalement temps réel, intégration géolocalisation incidents, support mode hors ligne et sécurité confidentialité.',
       'overview': 'Aperçu',
       'key_contributions': 'Contributions Clés',
       'available': 'Disponible',
