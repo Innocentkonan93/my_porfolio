@@ -1,6 +1,6 @@
 name: my_portfolio
 description: "A new Flutter project."
-publish_to: 'none'
+publish_to: "none"
 version: 1.0.0+1
 
 environment:
@@ -17,6 +17,8 @@ dependencies:
   flutter_svg: ^2.2.3
   get: ^4.7.3
   google_fonts: ^7.0.2
+  pdf: ^3.11.3
+  printing: ^5.14.2
   shared_preferences: ^2.5.3
   url_launcher: ^6.3.2
   url_strategy: ^0.2.0
@@ -34,3 +36,4 @@ flutter:
     - assets/images/
     - assets/images/caroussels/
     - assets/logos/
+    - assets/fonts/

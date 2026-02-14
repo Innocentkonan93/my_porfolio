@@ -1,9 +1,13 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:my_portfolio/app/data/models/app_model.dart';
 import 'package:my_portfolio/app/data/utils/constants.dart';
+import 'package:my_portfolio/app/services/pdf_generator.dart';
 
 class HomeController extends GetxController {
+  PdfGenerator pdfGenerator = PdfGenerator();
   final currentTab = 0.obs;
   final language = ''.obs;
 
@@ -11,6 +15,25 @@ class HomeController extends GetxController {
   void onInit() {
     language.value = Get.locale?.languageCode ?? 'en';
     super.onInit();
+    loadLanguage();
+  }
+
+  void loadLanguage() async {
+    final prefs = await SharedPreferences.getInstance();
+    final savedLang = prefs.getString('language_code');
+    if (savedLang != null) {
+      language.value = savedLang;
+      Get.updateLocale(Locale(savedLang));
+    } else {
+      language.value = Get.deviceLocale?.languageCode ?? 'en';
+    }
+  }
+
+  void changeLanguage(String langCode) async {
+    Get.updateLocale(Locale(langCode));
+    language.value = langCode;
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('language_code', langCode);
   }
 
   final carouselImages = [
@@ -75,5 +98,7 @@ class HomeController extends GetxController {
     }
   }
 
-  void downloadCV() {}
+  void downloadCV() async {
+    await pdfGenerator.generateAndPrintCV(userProfile);
+  }
 }

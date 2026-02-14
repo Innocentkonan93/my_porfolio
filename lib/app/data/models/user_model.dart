@@ -18,6 +18,7 @@ class UserModel {
   final String name;
   final String email;
   final String phone;
+  final String function;
   final String profilePicture;
   final List<SocialNetworkModel> socialLinks;
   final List<ExpModel> experiences;
@@ -25,6 +26,7 @@ class UserModel {
     required this.name,
     required this.email,
     required this.phone,
+    required this.function,
     required this.profilePicture,
     required this.socialLinks,
     required this.experiences,
@@ -34,6 +36,7 @@ class UserModel {
     String? name,
     String? email,
     String? phone,
+    String? function,
     String? profilePicture,
     List<SocialNetworkModel>? socialLinks,
     List<ExpModel>? experiences,
@@ -42,6 +45,7 @@ class UserModel {
       name: name ?? this.name,
       email: email ?? this.email,
       phone: phone ?? this.phone,
+      function: function ?? this.function,
       profilePicture: profilePicture ?? this.profilePicture,
       socialLinks: socialLinks ?? this.socialLinks,
       experiences: experiences ?? this.experiences,
@@ -53,6 +57,7 @@ class UserModel {
       'name': name,
       'email': email,
       'phone': phone,
+      'function': function,
       'profile_picture': profilePicture,
       'social_links': socialLinks,
       'experiences': experiences,
@@ -64,6 +69,7 @@ class UserModel {
       name: map['name'] ?? '',
       email: map['email'] ?? '',
       phone: map['phone'] ?? '',
+      function: map['function'] ?? '',
       profilePicture: map['profile_picture'] ?? '',
       socialLinks: List<SocialNetworkModel>.from(map['social_links']),
       experiences: List<ExpModel>.from(map['experiences']),
@@ -77,7 +83,7 @@ class UserModel {
 
   @override
   String toString() {
-    return 'UserModel(name: $name, email: $email, phone: $phone, profilePicture: $profilePicture, socialLinks: $socialLinks, experiences: $experiences)';
+    return 'UserModel(name: $name, email: $email, phone: $phone, function: $function, profilePicture: $profilePicture, socialLinks: $socialLinks, experiences: $experiences)';
   }
 
   @override
@@ -88,6 +94,7 @@ class UserModel {
         other.name == name &&
         other.email == email &&
         other.phone == phone &&
+        other.function == function &&
         other.profilePicture == profilePicture &&
         listEquals(other.socialLinks, socialLinks) &&
         listEquals(other.experiences, experiences);
@@ -98,6 +105,7 @@ class UserModel {
     return name.hashCode ^
         email.hashCode ^
         phone.hashCode ^
+        function.hashCode ^
         profilePicture.hashCode ^
         socialLinks.hashCode ^
         experiences.hashCode;

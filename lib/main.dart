@@ -4,6 +4,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:my_portfolio/firebase_options.dart';
 import 'package:url_strategy/url_strategy.dart';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:get/get.dart';
 
 import 'app/routes/app_pages.dart';
@@ -14,11 +16,14 @@ void main() async {
   setPathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(MyApp());
+  final prefs = await SharedPreferences.getInstance();
+  final savedLang = prefs.getString('language_code');
+  runApp(MyApp(savedLang: savedLang));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final String? savedLang;
+  const MyApp({super.key, this.savedLang});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +33,7 @@ class MyApp extends StatelessWidget {
       getPages: AppPages.routes,
       theme: appTheme,
       translations: Localization(),
-      locale: Get.deviceLocale,
+      locale: savedLang != null ? Locale(savedLang!) : Get.deviceLocale,
       fallbackLocale: const Locale('en', 'US'),
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,

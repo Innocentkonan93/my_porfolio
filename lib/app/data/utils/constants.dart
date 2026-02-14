@@ -273,6 +273,7 @@ final user = UserModel(
   name: 'Innocent Konan',
   email: 'konankoffiinnocent@gmail.com',
   phone: '+225 07 49 56 65 61',
+  function: "Flutter Developer",
   profilePicture: 'assets/images/ikonan.png',
   socialLinks: [
     SocialNetworkModel(

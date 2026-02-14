@@ -26,9 +26,7 @@ class LanguageSwitcher extends GetView<HomeController> {
             final isActive = currentLang == langs[i];
             return GestureDetector(
               onTap: () {
-                controller.language.value = langs[i];
-                Get.updateLocale(Locale(langs[i]));
-                // controller.update(); // Not needed if using Obx properly but keeping if legacy needs
+                controller.changeLanguage(langs[i]);
               },
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 180),

@@ -88,46 +88,48 @@ class ProfileHeader extends GetView<HomeController> {
               ),
             ).animate().fadeIn(delay: 400.ms),
             const SizedBox(height: 20),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                ...user.socialLinks.map((socialNetwork) {
-                  return ElevatedButton.icon(
-                    onPressed: () => controller.openLink(socialNetwork.url),
-                    icon: SvgPicture.asset(
-                      socialNetwork.icon,
-                      height: 20,
-                      width: 20,
-                    ),
-                    label: Text(socialNetwork.name),
-                    style: ButtonStyle(
-                      shape: WidgetStateProperty.all(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50),
-                        ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                spacing: 8,
+                children: [
+                  ...user.socialLinks.map((socialNetwork) {
+                    return ElevatedButton.icon(
+                      onPressed: () => controller.openLink(socialNetwork.url),
+                      icon: SvgPicture.asset(
+                        socialNetwork.icon,
+                        height: 20,
+                        width: 20,
                       ),
-                      backgroundColor: WidgetStateProperty.resolveWith((
-                        states,
-                      ) {
-                        if (states.contains(WidgetState.hovered)) {
-                          return AppColors.black;
-                        }
-                        return AppColors.grey;
-                      }),
-                      foregroundColor: WidgetStateProperty.resolveWith((
-                        states,
-                      ) {
-                        if (states.contains(WidgetState.hovered)) {
+                      label: Text(socialNetwork.name),
+                      style: ButtonStyle(
+                        shape: WidgetStateProperty.all(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                        ),
+                        backgroundColor: WidgetStateProperty.resolveWith((
+                          states,
+                        ) {
+                          if (states.contains(WidgetState.hovered)) {
+                            return AppColors.black;
+                          }
                           return AppColors.grey;
-                        }
-                        return AppColors.black;
-                      }),
-                      elevation: WidgetStateProperty.all(0),
-                    ),
-                  ).animate().fadeIn(delay: 600.ms).slideY(begin: 0.2);
-                }),
-              ],
+                        }),
+                        foregroundColor: WidgetStateProperty.resolveWith((
+                          states,
+                        ) {
+                          if (states.contains(WidgetState.hovered)) {
+                            return AppColors.grey;
+                          }
+                          return AppColors.black;
+                        }),
+                        elevation: WidgetStateProperty.all(0),
+                      ),
+                    ).animate().fadeIn(delay: 600.ms).slideY(begin: 0.2);
+                  }),
+                ],
+              ),
             ),
             const SizedBox(height: 10),
           ],
