@@ -50,8 +50,8 @@ class _RippleDotState extends State<RippleDot>
                 height: widget.size + (widget.size * 1.5 * _controller.value),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: widget.color.withOpacity(
-                    (1.0 - _controller.value).clamp(0.0, 1.0),
+                  color: widget.color.withValues(
+                    alpha: (1.0 - _controller.value).clamp(0.0, 1.0),
                   ),
                 ),
               );

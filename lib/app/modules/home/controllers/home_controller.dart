@@ -90,7 +90,6 @@ class HomeController extends GetxController {
       query: Uri.encodeFull('subject=Hello&body=I want to work with you'),
     );
     if (await canLaunchUrl(params)) {
-      print('Email sending...');
       await launchUrl(params);
     } else {
       // Could add error handling or user feedback here if desired

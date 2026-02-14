@@ -61,18 +61,17 @@ class ProfileHeader extends GetView<HomeController> {
                       ignoring: true,
                       child: TextButton.icon(
                         onPressed: () {},
-                        label: const RippleDot(
+                        icon: const RippleDot(
                           color: Color(0xFF439948),
                           size: 10,
                         ),
-                        icon: Text(
+                        label: Text(
                           "available".tr,
                           style: theme.textTheme.labelSmall?.copyWith(
                             fontWeight: FontWeight.w600,
                             color: AppColors.green,
                           ),
                         ),
-
                         style: TextButton.styleFrom(padding: EdgeInsets.zero),
                       ),
                     ),
