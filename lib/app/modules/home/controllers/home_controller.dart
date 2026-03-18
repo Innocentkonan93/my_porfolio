@@ -51,6 +51,9 @@ class HomeController extends GetxController {
     'assets/images/caroussels/12.jpeg',
     'assets/images/caroussels/13.jpeg',
     'assets/images/caroussels/14.jpeg',
+    'assets/images/caroussels/15.jpeg',
+    'assets/images/caroussels/16.jpeg',
+    'assets/images/caroussels/17.jpeg',
   ];
 
   final userProfile = user;
