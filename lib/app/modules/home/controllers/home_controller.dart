@@ -5,6 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:my_portfolio/app/data/models/app_model.dart';
 import 'package:my_portfolio/app/data/utils/constants.dart';
 import 'package:my_portfolio/app/services/pdf_generator.dart';
+import 'package:my_portfolio/app/widgets/contact_dialog.dart';
 
 class HomeController extends GetxController {
   PdfGenerator pdfGenerator = PdfGenerator();
@@ -86,17 +87,38 @@ class HomeController extends GetxController {
     }
   }
 
-  Future<void> sendMeMail() async {
-    final Uri params = Uri(
-      scheme: 'mailto',
-      path: 'konankoffiinnocent@gmail.com',
-      query: Uri.encodeFull('subject=Hello&body=I want to work with you'),
+  void contactMe() {
+    showGeneralDialog(
+      context: Get.context!,
+      barrierDismissible: true,
+      barrierLabel: 'Dismiss',
+      transitionDuration: const Duration(milliseconds: 400),
+      pageBuilder: (context, animation, secondaryAnimation) {
+        return const ContactDialog();
+      },
+      transitionBuilder: (context, animation, secondaryAnimation, child) {
+        return FadeTransition(
+          opacity: animation,
+          child: ScaleTransition(
+            scale: CurvedAnimation(
+              parent: animation,
+              curve: Curves.easeOutCubic,
+            ),
+            child: child,
+          ),
+        );
+      },
     );
-    if (await canLaunchUrl(params)) {
-      await launchUrl(params);
-    } else {
-      // Could add error handling or user feedback here if desired
-      return;
+  }
+
+  Future<void> launchURL(String urlString) async {
+    final Uri url = Uri.parse(urlString);
+    try {
+      if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+        await launchUrl(url); // fallback
+      }
+    } catch (e) {
+      debugPrint("Error launching $urlString: $e");
     }
   }
 

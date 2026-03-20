@@ -19,6 +19,7 @@ var appsList = [
     category: 'cat_mobile_app',
     createdAt: '2024-01-10',
     updatedAt: '2024-01-12',
+    isMobileApp: true,
   ),
 
   AppModel(
@@ -30,6 +31,7 @@ var appsList = [
     stack: ['Flutter', 'Dart', 'Firebase', 'API REST'],
     icon: 'assets/icons/cvf.png',
     image: 'assets/images/cvf.png',
+    isMobileApp: true,
     links: [
       "https://apps.apple.com/fr/app/c-v-f/id6444737272",
       "https://play.google.com/store/apps/details?id=com.creativegroup.cvf",
@@ -47,6 +49,7 @@ var appsList = [
     stack: ['Flutter', 'Dart', 'Firebase', 'API REST'],
     icon: 'assets/icons/cvfpro.png',
     image: 'assets/images/cvfprod.png',
+    isMobileApp: true,
     links: [
       "https://apps.apple.com/fr/app/cvf-pro/id6443990824",
       "https://play.google.com/store/apps/details?id=com.creative.cvf_pro.cvf_pro",
@@ -64,6 +67,8 @@ var appsList = [
     stack: ['Flutter', 'Dart', 'GraphQL'],
     icon: 'assets/icons/riise.png',
     image: 'assets/images/riise.png',
+    isMobileApp: true,
+
     links: [
       "https://apps.apple.com/fr/app/riise-expertis-consulting/id6504408735",
       "https://play.google.com/store/apps/details?id=com.skytechsystems.riise",
@@ -81,6 +86,7 @@ var appsList = [
     stack: ['Flutter', 'Dart', 'GraphQL'],
     icon: 'assets/icons/riisepro.png',
     image: 'assets/images/riisepro.png',
+    isMobileApp: true,
     links: [
       "https://apps.apple.com/fr/app/riise-pro/id6748640041",
       "https://play.google.com/store/apps/details?id=com.skytechsystems.riisepro",
@@ -98,6 +104,7 @@ var appsList = [
     stack: ['Flutter', 'Dart', 'API REST', 'Firebase'],
     icon: 'assets/icons/allodocteurplus.png',
     image: 'assets/images/allodocteurplus.png',
+    isMobileApp: true,
     links: [
       'https://apps.apple.com/fr/app/all%C3%B4-docteur-creative-group/id1625159221',
       'https://play.google.com/store/apps/details?id=com.creative.appallodocteurplus',
@@ -115,6 +122,8 @@ var appsList = [
     role: 'role_mobile_dev',
     stack: ['Flutter', 'Dart', 'Firebase'],
     image: 'assets/images/esachetrecycle.png',
+    isMobileApp: true,
+
     links: [
       "https://apps.apple.com/fr/app/esachet-recy/id6475726296",
       "https://play.google.com/store/apps/details?id=com.creativgroup.e_sachet_recy",
@@ -132,6 +141,8 @@ var appsList = [
     stack: ['Flutter', 'Dart', 'Firebase'],
     icon: 'assets/icons/esachetrecyclepro.png',
     image: 'assets/images/esachetrecyclepro.png',
+    isMobileApp: true,
+
     links: [
       "https://apps.apple.com/fr/app/esachet-recy-pro/id6475726734",
       "https://play.google.com/store/apps/details?id=com.creativgroup.e_sachet_recy_pro",
@@ -149,6 +160,7 @@ var appsList = [
     stack: ['Flutter', 'Dart', 'API REST', 'Google Maps'],
     icon: 'assets/icons/allopharma.png',
     image: 'assets/images/allopharma.png',
+    isMobileApp: true,
     links: [
       "https://apps.apple.com/fr/app/all%C3%B4-pharma-pro/id1625709020",
       "https://play.google.com/store/apps/details?id=com.creative.allopharmapro",
@@ -166,6 +178,7 @@ var appsList = [
     description: 'desc_allo_rdv_pro',
     icon: 'assets/icons/allorendezvous.png',
     image: 'assets/images/allorendezvous.png',
+    isMobileApp: true,
     links: [
       "https://apps.apple.com/fr/app/allo-rendezvous-pro/id6466824793",
       "https://play.google.com/store/apps/details?id=com.creativegroup.allo_rdv_pro",
@@ -183,6 +196,7 @@ var appsList = [
     description: 'desc_allo_urgence_pro',
     icon: 'assets/icons/allourgencepro.png',
     image: 'assets/images/allourgencepro.png',
+    isMobileApp: true,
     links: [
       "https://apps.apple.com/fr/app/all%C3%B4-urgencepro-creative-group/id6466824759",
       "https://play.google.com/store/apps/details?id=com.creativegroup.allo_urgence_pro",
@@ -200,6 +214,7 @@ var appsList = [
     description: 'desc_rezi_voyage',
     icon: 'assets/icons/rezivoyage.png',
     image: 'assets/images/rezivoyage.png',
+    isMobileApp: true,
     links: [],
     category: 'cat_mobile_app',
     createdAt: '2024-01-10',
@@ -214,6 +229,7 @@ var appsList = [
     description: 'desc_le_juriste',
     icon: 'assets/icons/lejuristeivorien.png',
     image: 'assets/images/lejuristeivorien.png',
+    isMobileApp: true,
     links: [],
     category: 'cat_mobile_app',
     createdAt: '2024-01-10',
@@ -228,6 +244,7 @@ var appsList = [
     description: 'desc_zoknot',
     icon: 'assets/icons/zoknot.png',
     image: 'assets/images/zoknot.png',
+    isMobileApp: true,
     links: [
       "https://apps.apple.com/us/app/zoknot/id1622896004",
       "https://play.google.com/store/apps/details?id=com.story.zoknot",
@@ -243,8 +260,9 @@ var appsList = [
     role: 'role_web_mobile_dev',
     stack: ['Flutter Web', 'Dart', 'Firebase Hosting'],
     description: 'desc_portfolio',
-    icon: 'assets/images/ikonan.png',
-    image: 'assets/images/ikonan.png',
+    icon: 'assets/images/ikonanporfolio.png',
+    image: 'assets/images/ikonanporfolio.png',
+    isMobileApp: false,
     links: ["https://ikonan.com"],
     category: 'cat_web_app',
     createdAt: '2024-01-27',
@@ -259,6 +277,7 @@ var appsList = [
     description: 'desc_cndh',
     icon: 'assets/icons/cndh.png',
     image: 'assets/images/cndh.png',
+    isMobileApp: true,
     links: [
       "https://apps.apple.com/fr/app/cndh-rci-alerte-pr%C3%A9coce/id6742834540",
       "https://play.google.com/store/apps/details?id=com.cndh.cndh",
@@ -266,6 +285,21 @@ var appsList = [
     category: 'cat_mobile_app',
     createdAt: '2024-01-10',
     updatedAt: '2024-01-12',
+  ),
+  AppModel(
+    id: 18,
+    title: 'Skytech systems',
+    tasks: 'tasks_skytech',
+    role: 'role_web_mobile_dev',
+    stack: ['Flutter Web', 'Dart', 'Firebase Hosting'],
+    description: 'desc_skytech',
+    icon: 'assets/icons/skytechsystems.png',
+    image: 'assets/images/skytechsystems.png',
+    isMobileApp: false,
+    links: ["https://skytechsystems.io"],
+    category: 'cat_web_app',
+    createdAt: '2024-01-10',
+    updatedAt: '2026-02-20',
   ),
 ];
 
@@ -294,7 +328,12 @@ final user = UserModel(
     SocialNetworkModel(
       name: 'Calendly',
       url: 'https://calendly.com/innocentkonan',
-      icon: 'assets/logos/calendly.svg',
+      icon: 'assets/logos/calendar.svg',
+    ),
+    SocialNetworkModel(
+      name: 'Whatsapp',
+      url: 'https://wa.me/2250749566561',
+      icon: 'assets/logos/whatsapp.svg',
     ),
   ],
   experiences: [

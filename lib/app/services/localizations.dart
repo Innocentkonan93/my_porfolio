@@ -76,6 +76,13 @@ class Localization extends Translations {
       'available': 'Available',
       'tasks_cndh':
           'Real-time reporting system, geolocation integration for incidents, offline mode support, and data privacy security.',
+      'desc_skytech': 'The official website of Skytech Systems.',
+      'tasks_skytech': 'Development and maintenance of the corporate website using Flutter Web.',
+      'visit': 'Visit',
+      'role': 'Role',
+      'tech_stack': 'Tech Stack',
+      'available_on': 'Available on:',
+      'visit_website': 'Visit Website',
     },
     'fr': {
       'hello': 'Bonjour',
@@ -162,6 +169,13 @@ class Localization extends Translations {
       'overview': 'Aperçu',
       'key_contributions': 'Contributions Clés',
       'available': 'Disponible',
+      'desc_skytech': 'Le site web officiel de Skytech Systems.',
+      'tasks_skytech': 'Développement et maintenance du site corporate en utilisant Flutter Web.',
+      'visit': 'Visiter',
+      'role': 'Rôle',
+      'tech_stack': 'Technologies',
+      'available_on': 'Disponible sur :',
+      'visit_website': 'Visiter le site',
     },
   };
 }

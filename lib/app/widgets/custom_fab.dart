@@ -18,7 +18,7 @@ class CustomFAB extends StatelessWidget {
         children: [
           FloatingActionButton.extended(
             heroTag: 'fab-1',
-            onPressed: controller.sendMeMail,
+            onPressed: controller.contactMe,
             backgroundColor: const Color.fromARGB(255, 221, 205, 253),
             foregroundColor: AppColors.black,
             icon: const Icon(Icons.email_outlined),

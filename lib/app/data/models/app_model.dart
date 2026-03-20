@@ -11,6 +11,7 @@ class AppModel {
   final List<String> stack;
   final String icon;
   final String image;
+  final bool isMobileApp;
   final List<String> links;
   final String category;
   final String createdAt;
@@ -24,6 +25,7 @@ class AppModel {
     required this.stack,
     required this.icon,
     required this.image,
+    required this.isMobileApp,
     required this.links,
     required this.category,
     required this.createdAt,
@@ -39,6 +41,7 @@ class AppModel {
     List<String>? stack,
     String? icon,
     String? image,
+    bool? isMobileApp,
     List<String>? links,
     String? category,
     String? createdAt,
@@ -53,6 +56,7 @@ class AppModel {
       stack: stack ?? this.stack,
       icon: icon ?? this.icon,
       image: image ?? this.image,
+      isMobileApp: isMobileApp ?? this.isMobileApp,
       links: links ?? this.links,
       category: category ?? this.category,
       createdAt: createdAt ?? this.createdAt,
@@ -70,6 +74,7 @@ class AppModel {
       'stack': stack,
       'icon': icon,
       'image': image,
+      'is_mobile_app': isMobileApp,
       'links': links,
       'category': category,
       'created_at': createdAt,
@@ -87,6 +92,7 @@ class AppModel {
       stack: List<String>.from(map['stack']),
       icon: map['icon'] ?? '',
       image: map['image'] ?? '',
+      isMobileApp: map['is_mobile_app'] ?? false,
       links: List<String>.from(map['links']),
       category: map['category'] ?? '',
       createdAt: map['created_at'] ?? '',
@@ -101,7 +107,7 @@ class AppModel {
 
   @override
   String toString() {
-    return 'AppModel(id: $id, title: $title, description: $description, tasks: $tasks, role: $role, stack: $stack, icon: $icon, image: $image, links: $links, category: $category, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'AppModel(id: $id, title: $title, description: $description, tasks: $tasks, role: $role, stack: $stack, icon: $icon, image: $image, isMobileApp: $isMobileApp, links: $links, category: $category, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override

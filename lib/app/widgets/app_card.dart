@@ -21,6 +21,7 @@ class AppCard extends StatelessWidget {
     final theme = context.theme;
     final screenWidth = MediaQuery.of(context).size.width;
     final isMobile = screenWidth < 680;
+    final isMobileApp = app.isMobileApp;
     return GestureDetector(
       onTap: () {
         //
@@ -77,10 +78,17 @@ class AppCard extends StatelessWidget {
           children: [
             Container(
               clipBehavior: Clip.antiAlias,
-              width: isMobile ? 150 : 200,
-              decoration: const BoxDecoration(
+              width: isMobile
+                  ? 150
+                  : isMobileApp
+                  ? 200
+                  : 350,
+              decoration: BoxDecoration(
                 // color: AppColors.grey,
                 borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
+                border: isMobileApp
+                    ? null
+                    : Border.all(width: 1, color: AppColors.grey),
               ),
               child: Hero(
                 tag: 'app_${app.id}',
@@ -149,7 +157,7 @@ class AppCard extends StatelessWidget {
                                 ),
                                 const SizedBox(width: 8),
                                 Text(
-                                  "Visit",
+                                  "visit".tr,
                                   style: theme.textTheme.bodyMedium?.copyWith(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,

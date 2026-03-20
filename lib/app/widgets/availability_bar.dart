@@ -32,7 +32,7 @@ class AvailabilityBar extends StatelessWidget {
             children: [
               TextButton.icon(
                 onPressed: () {
-                  controller.sendMeMail();
+                  controller.contactMe();
                 },
                 icon: const Icon(
                   Icons.email,

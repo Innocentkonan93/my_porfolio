@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:my_portfolio/app/configs/app_colors.dart';
 import 'package:my_portfolio/app/data/models/app_model.dart';
 import 'package:my_portfolio/app/modules/home/controllers/home_controller.dart';
@@ -11,7 +10,6 @@ class AppDetailsDialog extends GetWidget<HomeController> {
 
   final AppModel app;
 
-  @override
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -197,7 +195,7 @@ class AppDetailsDialog extends GetWidget<HomeController> {
               children: [
                 _buildTechStats(theme),
                 const Divider(height: 48, thickness: 1),
-                _buildSectionTitle(theme, "Overview", Icons.info_outline),
+                _buildSectionTitle(theme, "overview".tr, Icons.info_outline),
                 const SizedBox(height: 12),
                 Text(
                   app.description.tr,
@@ -207,7 +205,7 @@ class AppDetailsDialog extends GetWidget<HomeController> {
                 const SizedBox(height: 32),
                 _buildSectionTitle(
                   theme,
-                  "Key Contributions",
+                  "key_contributions".tr,
                   Icons.check_circle_outline,
                 ),
                 const SizedBox(height: 12),
@@ -230,7 +228,7 @@ class AppDetailsDialog extends GetWidget<HomeController> {
       children: [
         _buildInfoRow(
           theme,
-          label: "Role",
+          label: "role".tr,
           value: app.role.tr,
           icon: Icons.person_outline,
         ),
@@ -244,7 +242,7 @@ class AppDetailsDialog extends GetWidget<HomeController> {
             ),
             const SizedBox(width: 8),
             Text(
-              "Tech Stack",
+              "tech_stack".tr,
               style: theme.textTheme.titleSmall?.copyWith(
                 fontWeight: FontWeight.bold,
                 color: AppColors.primary,
@@ -338,7 +336,7 @@ class AppDetailsDialog extends GetWidget<HomeController> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Text(
-            "Available on:",
+            "available_on".tr,
             style: theme.textTheme.bodySmall?.copyWith(
               color: Colors.grey[600],
               fontWeight: FontWeight.bold,
@@ -374,7 +372,7 @@ class AppDetailsDialog extends GetWidget<HomeController> {
                     const Icon(Icons.language, color: Colors.white, size: 18),
                     const SizedBox(width: 8),
                     Text(
-                      "Visit Website",
+                      "visit_website".tr,
                       style: theme.textTheme.labelMedium?.copyWith(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
