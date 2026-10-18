@@ -293,42 +293,18 @@ class _HomeViewState extends State<HomeView> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 48),
-                    for (final exp in controller.userProfile.experiences) ...[
-                      const Divider(),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 18),
-                        child: Wrap(
-                          spacing: 30,
-                          runSpacing: 8,
-                          children: [
-                            SizedBox(
-                              width: 130,
-                              child: Text(
-                                '${exp.beginDate.year} — ${exp.endDate.year}',
-                                style: const TextStyle(
-                                  color: Color(0xFF9AA9B9),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: mobile ? 230 : 320,
-                              child: Text(
-                                exp.organizationName,
-                                style: const TextStyle(
-                                  fontSize: 19,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                            Text(
-                              exp.role.tr,
-                              style: const TextStyle(fontSize: 15),
-                            ),
-                          ],
-                        ),
+                    const SizedBox(height: 64),
+                    Text(
+                      copy('PARCOURS PROFESSIONNEL', 'PROFESSIONAL EXPERIENCE'),
+                      style: const TextStyle(
+                        color: Color(0xFF9AA9B9),
+                        fontSize: 11,
+                        letterSpacing: 1.8,
+                        fontWeight: FontWeight.w600,
                       ),
-                    ],
+                    ),
+                    const SizedBox(height: 20),
+                    _experienceTimeline(mobile),
                     const Divider(),
                     SizedBox(height: mobile ? 64 : 100),
                     _heading(
@@ -471,6 +447,156 @@ class _HomeViewState extends State<HomeView> {
       ),
     );
   });
+
+  Widget _experienceTimeline(bool mobile) {
+    final experiences = controller.userProfile.experiences;
+    final now = DateTime.now();
+    return Column(
+      children: [
+        for (var index = 0; index < experiences.length; index++)
+          Padding(
+            padding: EdgeInsets.only(
+              bottom: index == experiences.length - 1 ? 0 : 12,
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: mobile ? 74 : 112,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        experiences[index].beginDate.year.toString(),
+                        style: TextStyle(
+                          color: AppColors.primary,
+                          fontSize: mobile ? 13 : 15,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      Text(
+                        experiences[index].endDate.year == now.year &&
+                                experiences[index].endDate.month == now.month
+                            ? copy('Aujourd’hui', 'Now')
+                            : experiences[index].endDate.year ==
+                                  experiences[index].beginDate.year
+                            ? ''
+                            : experiences[index].endDate.year.toString(),
+                        style: const TextStyle(
+                          color: Color(0xFF9AA9B9),
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: 9,
+                  height: 72,
+                  child: Stack(
+                    alignment: Alignment.topCenter,
+                    children: [
+                      Container(width: 1, color: const Color(0xFF293541)),
+                      Align(
+                        alignment: Alignment.topCenter,
+                        child: Container(
+                          width: 9,
+                          height: 9,
+                          decoration: BoxDecoration(
+                            color: index == 0
+                                ? AppColors.primary
+                                : const Color(0xFF536272),
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Container(
+                    padding: EdgeInsets.all(mobile ? 14 : 18),
+                    decoration: BoxDecoration(
+                      color: AppColors.surface,
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: const Color(0xFF293541)),
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: mobile ? 40 : 48,
+                          height: mobile ? 40 : 48,
+                          padding: const EdgeInsets.all(6),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF0C1117),
+                            borderRadius: BorderRadius.circular(9),
+                          ),
+                          child: Image.asset(
+                            experiences[index].organizationImage,
+                            fit: BoxFit.contain,
+                            errorBuilder: (_, _, _) =>
+                                const Icon(Icons.business_outlined),
+                          ),
+                        ),
+                        const SizedBox(width: 14),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                experiences[index].organizationName,
+                                style: TextStyle(
+                                  fontSize: mobile ? 14 : 17,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                experiences[index].role.tr,
+                                style: const TextStyle(
+                                  color: Color(0xFF9AA9B9),
+                                  fontSize: 13,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        if (experiences[index].endDate.year == now.year &&
+                            experiences[index].endDate.month == now.month &&
+                            !mobile) ...[
+                          const SizedBox(width: 12),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 10,
+                              vertical: 6,
+                            ),
+                            decoration: BoxDecoration(
+                              color: AppColors.primary.withValues(alpha: .12),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Text(
+                              copy('EN POSTE', 'CURRENT'),
+                              style: const TextStyle(
+                                color: AppColors.primary,
+                                fontSize: 9,
+                                fontWeight: FontWeight.w700,
+                                letterSpacing: .7,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+      ],
+    );
+  }
 
   Widget _heading(String number, String title, bool mobile) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
