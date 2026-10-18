@@ -357,7 +357,7 @@ final user = UserModel(
     ExpModel(
       organizationName: 'SKYTECH SYSTEMS',
       role: 'role_mobile_dev',
-      organizationImage: 'assets/logos/skytech.png',
+      organizationImage: 'assets/logos/skytech-mark.png',
       country: '🇨🇮',
       link: 'https://skytechsystems.io/',
       beginDate: DateTime.parse('2023-01-01'),

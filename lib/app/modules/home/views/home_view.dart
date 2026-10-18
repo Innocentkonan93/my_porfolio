@@ -525,44 +525,71 @@ class _HomeViewState extends State<HomeView> {
                     ),
                     child: Row(
                       children: [
-                        Container(
-                          width: mobile ? 40 : 48,
-                          height: mobile ? 40 : 48,
-                          padding: const EdgeInsets.all(6),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFF0C1117),
-                            borderRadius: BorderRadius.circular(9),
-                          ),
-                          child: Image.asset(
-                            experiences[index].organizationImage,
-                            fit: BoxFit.contain,
-                            errorBuilder: (_, _, _) =>
-                                const Icon(Icons.business_outlined),
-                          ),
-                        ),
-                        const SizedBox(width: 14),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                experiences[index].organizationName,
-                                style: TextStyle(
-                                  fontSize: mobile ? 14 : 17,
-                                  fontWeight: FontWeight.w600,
+                        if (experiences[index].organizationName ==
+                            'SKYTECH SYSTEMS') ...[
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  'assets/logos/skytech-systems-white.png',
+                                  width: mobile ? 132 : 188,
+                                  height: mobile ? 34 : 44,
+                                  fit: BoxFit.contain,
+                                  alignment: Alignment.centerLeft,
                                 ),
-                              ),
-                              const SizedBox(height: 4),
-                              Text(
-                                experiences[index].role.tr,
-                                style: const TextStyle(
-                                  color: Color(0xFF9AA9B9),
-                                  fontSize: 13,
+                                const SizedBox(height: 6),
+                                Text(
+                                  experiences[index].role.tr,
+                                  style: const TextStyle(
+                                    color: Color(0xFF9AA9B9),
+                                    fontSize: 13,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
+                        ] else ...[
+                          Container(
+                            width: mobile ? 40 : 48,
+                            height: mobile ? 40 : 48,
+                            padding: const EdgeInsets.all(6),
+                            decoration: BoxDecoration(
+                              color: const Color(0xFF0C1117),
+                              borderRadius: BorderRadius.circular(9),
+                            ),
+                            child: Image.asset(
+                              experiences[index].organizationImage,
+                              fit: BoxFit.contain,
+                              errorBuilder: (_, _, _) =>
+                                  const Icon(Icons.business_outlined),
+                            ),
+                          ),
+                          const SizedBox(width: 14),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  experiences[index].organizationName,
+                                  style: TextStyle(
+                                    fontSize: mobile ? 14 : 17,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  experiences[index].role.tr,
+                                  style: const TextStyle(
+                                    color: Color(0xFF9AA9B9),
+                                    fontSize: 13,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                         if (experiences[index].endDate.year == now.year &&
                             experiences[index].endDate.month == now.month &&
                             !mobile) ...[
