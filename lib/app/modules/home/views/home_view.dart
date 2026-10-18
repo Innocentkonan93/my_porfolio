@@ -1,3 +1,4 @@
+import 'widgets/animated_phones.dart';
 import 'widgets/portfolio_gallery.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -645,31 +646,7 @@ class _HomeViewState extends State<HomeView> {
             Positioned.fill(
               top: 65,
               bottom: -50,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  for (final item in [
-                    ('assets/images/cutit.png', -0.08),
-                    ('assets/images/riise.png', 0.0),
-                    ('assets/images/cvf.png', 0.08),
-                  ])
-                    Flexible(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: mobile ? 10 : 38,
-                        ),
-                        child: Transform.rotate(
-                          angle: item.$2,
-                          child: Image.asset(
-                            item.$1,
-                            fit: BoxFit.contain,
-                            alignment: Alignment.topCenter,
-                          ),
-                        ),
-                      ),
-                    ),
-                ],
-              ),
+              child: AnimatedPhones(mobile: mobile),
             ),
           ],
         ),
