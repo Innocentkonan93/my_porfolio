@@ -19,7 +19,7 @@ final ThemeData appTheme = ThemeData(
   filledButtonTheme: FilledButtonThemeData(
     style: FilledButton.styleFrom(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 22),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
     ),
   ),
   textButtonTheme: TextButtonThemeData(
@@ -30,9 +30,9 @@ final ThemeData appTheme = ThemeData(
   ),
   chipTheme: ChipThemeData(
     backgroundColor: Colors.transparent,
-    selectedColor: const Color(0xFFE9D8CC),
+    selectedColor: const Color(0xFFE6E0FA),
     side: const BorderSide(color: AppColors.grey),
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3)),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
   ),
 );

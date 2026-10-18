@@ -109,101 +109,9 @@ class _HomeViewState extends State<HomeView> {
                         ],
                       ),
                     ),
-                    const Divider(),
-                    SizedBox(height: mobile ? 48 : 76),
-                    Wrap(
-                      spacing: 14,
-                      runSpacing: 10,
-                      crossAxisAlignment: WrapCrossAlignment.center,
-                      children: [
-                        Container(
-                          width: 7,
-                          height: 7,
-                          decoration: const BoxDecoration(
-                            color: AppColors.primary,
-                            shape: BoxShape.circle,
-                          ),
-                        ),
-                        label(
-                          copy(
-                            'Innocent Konan · Ingénieur produit mobile',
-                            'Innocent Konan · Mobile product engineer',
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 28),
-                    Text(
-                      copy(
-                        'Des idées claires.\nDes produits qui\nfont la différence.',
-                        'Clear ideas.\nProducts that\nmake a difference.',
-                      ),
-                      style: TextStyle(
-                        fontSize: mobile ? 48 : 88,
-                        height: 1.04,
-                        letterSpacing: mobile ? -2.5 : -5,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    const SizedBox(height: 32),
-                    Flex(
-                      direction: mobile ? Axis.vertical : Axis.horizontal,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        if (!mobile)
-                          const Expanded(
-                            child: Text(
-                              'DESIGN → CODE → PRODUIT',
-                              style: TextStyle(
-                                fontSize: 11,
-                                letterSpacing: 1.8,
-                                color: AppColors.primary,
-                              ),
-                            ),
-                          ),
-                        SizedBox(
-                          width: mobile ? double.infinity : 420,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                copy(
-                                  'Je conçois et développe des applications mobiles et web. Du premier écran au produit livré, chaque détail compte.',
-                                  'I design and build mobile and web applications. From the first screen to the shipped product, every detail matters.',
-                                ),
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  height: 1.6,
-                                  color: Color(0xFF65615B),
-                                ),
-                              ),
-                              const SizedBox(height: 22),
-                              Wrap(
-                                spacing: 12,
-                                runSpacing: 10,
-                                children: [
-                                  action(
-                                    copy(
-                                      'Explorer mes projets',
-                                      'Explore my work',
-                                    ),
-                                    () => scrollTo(projectsKey),
-                                    filled: true,
-                                  ),
-                                  action(
-                                    copy('Discutons', 'Let’s talk'),
-                                    controller.contactMe,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 58),
-                    _heroStrip(mobile),
-                    SizedBox(height: mobile ? 64 : 100),
+                    const SizedBox(height: 20),
+                    _bentoHero(mobile),
+                    SizedBox(height: mobile ? 64 : 90),
                     Container(
                       key: projectsKey,
                       child: _heading(
@@ -292,7 +200,7 @@ class _HomeViewState extends State<HomeView> {
                           child: AspectRatio(
                             aspectRatio: 0.95,
                             child: ClipRRect(
-                              borderRadius: BorderRadius.circular(2),
+                              borderRadius: BorderRadius.circular(24),
                               child: Image.asset(
                                 controller.userProfile.profilePicture,
                                 fit: BoxFit.cover,
@@ -404,6 +312,7 @@ class _HomeViewState extends State<HomeView> {
                         padding: EdgeInsets.all(mobile ? 24 : 36),
                         decoration: BoxDecoration(
                           border: Border.all(color: AppColors.grey),
+                          borderRadius: BorderRadius.circular(24),
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -542,59 +451,239 @@ class _HomeViewState extends State<HomeView> {
     ],
   );
 
-  Widget _heroStrip(bool mobile) => Container(
-    height: mobile ? 280 : 390,
-    clipBehavior: Clip.hardEdge,
-    decoration: const BoxDecoration(color: Color(0xFFE7E0D5)),
-    child: Stack(
-      children: [
-        Positioned(
-          top: 22,
-          left: 24,
-          child: label(
-            copy('Du concept à l’écran.', 'From concept to screen.'),
-          ),
-        ),
-        Positioned(
-          bottom: 22,
-          right: 24,
-          child: label('FLUTTER / IOS / ANDROID'),
-        ),
-        Positioned.fill(
-          top: 62,
-          bottom: -65,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              for (final entry in [
-                ('assets/images/cutit.png', -0.09),
-                ('assets/images/riise.png', 0.06),
-                ('assets/images/cvf.png', 0.12),
-              ])
-                Flexible(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: mobile ? 7 : 28),
-                    child: Transform.rotate(
-                      angle: entry.$2,
-                      child: Image.asset(
-                        entry.$1,
-                        fit: BoxFit.contain,
-                        alignment: Alignment.topCenter,
+  Widget _bentoHero(bool mobile) => LayoutBuilder(
+    builder: (context, constraints) {
+      final full = constraints.maxWidth;
+      final third = mobile ? full : (full - 36) / 3;
+      return Wrap(
+        spacing: 18,
+        runSpacing: 18,
+        children: [
+          SizedBox(
+            width: mobile ? full : third * 2 + 18,
+            child: _BentoTile(
+              color: const Color(0xFFE6E0FA),
+              child: Padding(
+                padding: EdgeInsets.all(mobile ? 26 : 40),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    label(
+                      copy('Bonjour, moi c’est Innocent.', 'Hi, I’m Innocent.'),
+                    ),
+                    const SizedBox(height: 30),
+                    Text(
+                      copy(
+                        'De l’idée au\nproduit. Ensemble.',
+                        'From idea to\nproduct. Together.',
+                      ),
+                      style: TextStyle(
+                        fontSize: mobile ? 42 : 64,
+                        height: 1.06,
+                        letterSpacing: -2.5,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
-                  ),
+                    const SizedBox(height: 24),
+                    Text(
+                      copy(
+                        'Ingénieur produit mobile. Je donne vie à vos idées avec Flutter, du premier écran à la mise en ligne.',
+                        'Mobile product engineer. I bring your ideas to life with Flutter, from the first screen to launch.',
+                      ),
+                      style: const TextStyle(fontSize: 17, height: 1.6),
+                    ),
+                    const SizedBox(height: 28),
+                    Wrap(
+                      spacing: 12,
+                      runSpacing: 8,
+                      children: [
+                        action(
+                          copy('Explorer mes projets', 'Explore my work'),
+                          () => scrollTo(projectsKey),
+                          filled: true,
+                        ),
+                        action(
+                          copy('Discutons', 'Let’s talk'),
+                          controller.contactMe,
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-            ],
+              ),
+            ),
           ),
-        ),
-      ],
-    ),
+          SizedBox(
+            width: third,
+            child: _BentoTile(
+              color: const Color(0xFFDCE8DB),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: Row(
+                      children: [
+                        const Icon(Icons.waving_hand_outlined, size: 20),
+                        const SizedBox(width: 12),
+                        Expanded(child: label('Innocent Konan')),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: mobile ? 250 : 310,
+                    width: double.infinity,
+                    child: Image.asset(
+                      controller.userProfile.profilePicture,
+                      fit: BoxFit.cover,
+                      alignment: Alignment.topCenter,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: Text(
+                      copy(
+                        'Le code, avec une touche humaine.',
+                        'Good code. A human touch.',
+                      ),
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SizedBox(
+            width: third,
+            child: _BentoTile(
+              color: const Color(0xFF25252B),
+              child: Padding(
+                padding: const EdgeInsets.all(28),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Icon(
+                      Icons.code_rounded,
+                      color: Color(0xFFC7B9FF),
+                      size: 30,
+                    ),
+                    const SizedBox(height: 28),
+                    const Text(
+                      'Flutter & beyond.',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 27,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    const Text(
+                      'Dart / Firebase / Mobile / Web',
+                      style: TextStyle(
+                        color: Color(0xFFCECBD8),
+                        fontSize: 14,
+                        height: 1.6,
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+                    Text(
+                      copy(
+                        'Des interfaces soignées. Des produits concrets.',
+                        'Thoughtful interfaces. Real products.',
+                      ),
+                      style: const TextStyle(
+                        color: Color(0xFFCECBD8),
+                        height: 1.6,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            width: third,
+            child: _BentoTile(
+              color: const Color(0xFFFFE6CC),
+              child: Padding(
+                padding: const EdgeInsets.all(28),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Icon(Icons.layers_outlined, size: 30),
+                    const SizedBox(height: 16),
+                    Text(
+                      '${controller.mobileApps.length + controller.webApplications.length}',
+                      style: const TextStyle(
+                        fontSize: 64,
+                        height: 1,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: -3,
+                      ),
+                    ),
+                    const SizedBox(height: 14),
+                    Text(
+                      copy('projets à découvrir', 'projects to explore'),
+                      style: const TextStyle(fontSize: 21),
+                    ),
+                    const SizedBox(height: 8),
+                    action(
+                      copy('Voir la collection', 'View collection'),
+                      () => scrollTo(projectsKey),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            width: third,
+            child: _BentoTile(
+              color: const Color(0xFFDEEAF5),
+              child: Padding(
+                padding: const EdgeInsets.all(28),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Icon(Icons.auto_awesome_outlined, size: 30),
+                    const SizedBox(height: 26),
+                    Text(
+                      copy('On crée la suite ?', 'What’s next?'),
+                      style: const TextStyle(
+                        fontSize: 29,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: -1,
+                      ),
+                    ),
+                    const SizedBox(height: 14),
+                    Text(
+                      copy(
+                        'Une idée, un besoin, une envie de collaborer.',
+                        'An idea, a challenge, a chance to collaborate.',
+                      ),
+                      style: const TextStyle(height: 1.6),
+                    ),
+                    const SizedBox(height: 12),
+                    action(
+                      copy('Prenons contact', 'Get in touch'),
+                      controller.contactMe,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      );
+    },
   );
 
   Widget _project(AppModel app, int index, bool mobile) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Material(
+        clipBehavior: Clip.antiAlias,
+        borderRadius: BorderRadius.circular(24),
         color: [
           const Color(0xFFE5DFEE),
           const Color(0xFFE1E5DB),
@@ -687,4 +776,34 @@ class ExpandedIf extends StatelessWidget {
   @override
   Widget build(BuildContext context) =>
       enabled ? Expanded(child: child) : child;
+}
+
+class _BentoTile extends StatefulWidget {
+  const _BentoTile({required this.color, required this.child});
+  final Color color;
+  final Widget child;
+  @override
+  State<_BentoTile> createState() => _BentoTileState();
+}
+
+class _BentoTileState extends State<_BentoTile> {
+  bool hovered = false;
+  @override
+  Widget build(BuildContext context) => MouseRegion(
+    onEnter: (_) => setState(() => hovered = true),
+    onExit: (_) => setState(() => hovered = false),
+    child: AnimatedContainer(
+      duration: MediaQuery.disableAnimationsOf(context)
+          ? Duration.zero
+          : const Duration(milliseconds: 200),
+      transform: Matrix4.translationValues(0, hovered ? -4 : 0, 0),
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        color: widget.color,
+        borderRadius: BorderRadius.circular(28),
+        border: Border.all(color: Colors.black.withValues(alpha: 0.04)),
+      ),
+      child: widget.child,
+    ),
+  );
 }
