@@ -129,7 +129,7 @@ class HomeController extends GetxController {
     await pdfGenerator.generateAndPrintCV(
       userProfile,
       languageCode: language.value,
-      theme: CvTheme.productLab,
+      theme: CvTheme.bento,
     );
   }
 }
