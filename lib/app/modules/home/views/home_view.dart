@@ -1,3 +1,4 @@
+import 'widgets/scroll_reveal.dart';
 import 'widgets/animated_phones.dart';
 import 'widgets/portfolio_gallery.dart';
 import 'package:flutter/material.dart';
@@ -186,7 +187,11 @@ class _HomeViewState extends State<HomeView> {
                             for (var i = 0; i < visibleApps.length; i++)
                               SizedBox(
                                 width: width,
-                                child: _project(visibleApps[i], i, mobile),
+                                child: ScrollReveal(
+                                  key: ValueKey(visibleApps[i].title),
+                                  delay: Duration(milliseconds: (i % 2) * 100),
+                                  child: _project(visibleApps[i], i, mobile),
+                                ),
                               ),
                           ],
                         );
@@ -457,7 +462,7 @@ class _HomeViewState extends State<HomeView> {
                         ],
                       ),
                     ),
-                  ],
+                  ].map(_revealSection).toList(),
                 ),
               ),
             ),
@@ -466,6 +471,18 @@ class _HomeViewState extends State<HomeView> {
       ),
     );
   });
+
+  Widget _revealSection(Widget child) {
+    if (child is SizedBox ||
+        child is Divider ||
+        child is LayoutBuilder ||
+        child is ScrollReveal) {
+      return child;
+    }
+    // The hero owns its staggered entrance and the phones animate separately.
+    if (child.key == const ValueKey('hero')) return child;
+    return ScrollReveal(child: child);
+  }
 
   Widget _heading(String number, String title, bool mobile) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -489,137 +506,149 @@ class _HomeViewState extends State<HomeView> {
   );
 
   Widget _labHero(bool mobile) => Column(
+    key: const ValueKey('hero'),
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Wrap(
-        spacing: 12,
-        runSpacing: 10,
-        crossAxisAlignment: WrapCrossAlignment.center,
-        children: [
-          const Icon(
-            Icons.terminal_rounded,
-            color: Color(0xFF6DE2CF),
-            size: 20,
-          ),
-          label('INNOCENT KONAN / PRODUCT LAB'),
-        ],
+      ScrollReveal(
+        child: Wrap(
+          spacing: 12,
+          runSpacing: 10,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: [
+            const Icon(
+              Icons.terminal_rounded,
+              color: Color(0xFF6DE2CF),
+              size: 20,
+            ),
+            label('INNOCENT KONAN / PRODUCT LAB'),
+          ],
+        ),
       ),
       const SizedBox(height: 30),
-      Flex(
-        direction: mobile ? Axis.vertical : Axis.horizontal,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ExpandedIf(
-            enabled: !mobile,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  copy(
-                    'Pensé pour les gens.\nConçu pour durer.',
-                    'Built for people.\nEngineered to last.',
-                  ),
-                  style: TextStyle(
-                    fontSize: mobile ? 44 : 72,
-                    height: 1.08,
-                    letterSpacing: -2.5,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                const SizedBox(height: 24),
-                Text(
-                  copy(
-                    'Je transforme des idées en applications mobiles et web. De belles interfaces, une architecture solide et le souci du détail.',
-                    'I turn ideas into mobile and web applications. Thoughtful interfaces, solid architecture and attention to detail.',
-                  ),
-                  style: const TextStyle(
-                    color: Color(0xFF9AA9B9),
-                    fontSize: 17,
-                    height: 1.7,
-                  ),
-                ),
-                const SizedBox(height: 28),
-                Wrap(
-                  spacing: 10,
-                  runSpacing: 10,
-                  children: [
-                    action(
-                      copy('Explorer mes projets', 'Explore my work'),
-                      () => scrollTo(projectsKey),
-                      filled: true,
-                    ),
-                    action(
-                      copy('Discutons', 'Let’s talk'),
-                      controller.contactMe,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          SizedBox(width: mobile ? 0 : 48, height: mobile ? 32 : 0),
-          SizedBox(
-            width: mobile ? double.infinity : 320,
-            child: Container(
-              padding: const EdgeInsets.all(24),
-              decoration: BoxDecoration(
-                color: const Color(0xFF131C25),
-                borderRadius: BorderRadius.circular(14),
-                border: Border.all(color: const Color(0xFF293541)),
-              ),
+      ScrollReveal(
+        delay: const Duration(milliseconds: 120),
+        child: Flex(
+          direction: mobile ? Axis.vertical : Axis.horizontal,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ExpandedIf(
+              enabled: !mobile,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Row(
-                    children: [
-                      Icon(Icons.circle, size: 8, color: Color(0xFF6DE2CF)),
-                      SizedBox(width: 10),
-                      Expanded(
-                        child: Text(
-                          'developer.profile',
-                          style: TextStyle(
-                            fontFamily: 'monospace',
-                            fontSize: 12,
-                            color: Color(0xFF9AA9B9),
-                          ),
-                        ),
-                      ),
-                    ],
+                  Text(
+                    copy(
+                      'Pensé pour les gens.\nConçu pour durer.',
+                      'Built for people.\nEngineered to last.',
+                    ),
+                    style: TextStyle(
+                      fontSize: mobile ? 44 : 72,
+                      height: 1.08,
+                      letterSpacing: -2.5,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  Text(
+                    copy(
+                      'Je transforme des idées en applications mobiles et web. De belles interfaces, une architecture solide et le souci du détail.',
+                      'I turn ideas into mobile and web applications. Thoughtful interfaces, solid architecture and attention to detail.',
+                    ),
+                    style: const TextStyle(
+                      color: Color(0xFF9AA9B9),
+                      fontSize: 17,
+                      height: 1.7,
+                    ),
                   ),
                   const SizedBox(height: 28),
-                  CircleAvatar(
-                    radius: 34,
-                    backgroundImage: AssetImage(
-                      controller.userProfile.profilePicture,
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  const Text(
-                    'Innocent Konan',
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    copy('Ingénieur produit mobile', 'Mobile product engineer'),
-                    style: const TextStyle(color: Color(0xFF9AA9B9)),
-                  ),
-                  const SizedBox(height: 24),
-                  const Divider(),
-                  const SizedBox(height: 16),
-                  const Text(
-                    'stack: [Flutter, Dart, Firebase]\nplatforms: [iOS, Android, Web]',
-                    style: TextStyle(
-                      fontFamily: 'monospace',
-                      color: Color(0xFF6DE2CF),
-                      height: 2,
-                      fontSize: 12,
-                    ),
+                  Wrap(
+                    spacing: 10,
+                    runSpacing: 10,
+                    children: [
+                      action(
+                        copy('Explorer mes projets', 'Explore my work'),
+                        () => scrollTo(projectsKey),
+                        filled: true,
+                      ),
+                      action(
+                        copy('Discutons', 'Let’s talk'),
+                        controller.contactMe,
+                      ),
+                    ],
                   ),
                 ],
               ),
             ),
-          ),
-        ],
+            SizedBox(width: mobile ? 0 : 48, height: mobile ? 32 : 0),
+            SizedBox(
+              width: mobile ? double.infinity : 320,
+              child: Container(
+                padding: const EdgeInsets.all(24),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF131C25),
+                  borderRadius: BorderRadius.circular(14),
+                  border: Border.all(color: const Color(0xFF293541)),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Row(
+                      children: [
+                        Icon(Icons.circle, size: 8, color: Color(0xFF6DE2CF)),
+                        SizedBox(width: 10),
+                        Expanded(
+                          child: Text(
+                            'developer.profile',
+                            style: TextStyle(
+                              fontFamily: 'monospace',
+                              fontSize: 12,
+                              color: Color(0xFF9AA9B9),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 28),
+                    CircleAvatar(
+                      radius: 34,
+                      backgroundImage: AssetImage(
+                        controller.userProfile.profilePicture,
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+                    const Text(
+                      'Innocent Konan',
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      copy(
+                        'Ingénieur produit mobile',
+                        'Mobile product engineer',
+                      ),
+                      style: const TextStyle(color: Color(0xFF9AA9B9)),
+                    ),
+                    const SizedBox(height: 24),
+                    const Divider(),
+                    const SizedBox(height: 16),
+                    const Text(
+                      'stack: [Flutter, Dart, Firebase]\nplatforms: [iOS, Android, Web]',
+                      style: TextStyle(
+                        fontFamily: 'monospace',
+                        color: Color(0xFF6DE2CF),
+                        height: 2,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
       const SizedBox(height: 48),
       Container(
