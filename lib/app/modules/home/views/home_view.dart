@@ -462,7 +462,7 @@ class _HomeViewState extends State<HomeView> {
                         ],
                       ),
                     ),
-                  ].map(_revealSection).toList(),
+                  ],
                 ),
               ),
             ),
@@ -471,18 +471,6 @@ class _HomeViewState extends State<HomeView> {
       ),
     );
   });
-
-  Widget _revealSection(Widget child) {
-    if (child is SizedBox ||
-        child is Divider ||
-        child is LayoutBuilder ||
-        child is ScrollReveal) {
-      return child;
-    }
-    // The hero owns its staggered entrance and the phones animate separately.
-    if (child.key == const ValueKey('hero')) return child;
-    return ScrollReveal(child: child);
-  }
 
   Widget _heading(String number, String title, bool mobile) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
