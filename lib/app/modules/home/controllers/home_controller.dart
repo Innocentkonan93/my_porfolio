@@ -126,6 +126,10 @@ class HomeController extends GetxController {
   }
 
   void downloadCV() async {
-    await pdfGenerator.generateAndPrintCV(userProfile);
+    await pdfGenerator.generateAndPrintCV(
+      userProfile,
+      languageCode: language.value,
+      theme: CvTheme.productLab,
+    );
   }
 }
