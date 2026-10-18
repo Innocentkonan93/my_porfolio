@@ -1,3 +1,4 @@
+import 'widgets/portfolio_gallery.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../configs/app_colors.dart';
@@ -62,424 +63,400 @@ class _HomeViewState extends State<HomeView> {
         ? controller.mobileApps
         : controller.webApplications;
     final visibleApps = showAll ? apps : apps.take(4).toList();
-    final darkTheme = Theme.of(context).copyWith(
-      brightness: Brightness.dark,
-      scaffoldBackgroundColor: const Color(0xFF0C1117),
-      colorScheme: const ColorScheme.dark(
-        primary: Color(0xFF6DE2CF),
-        onPrimary: Color(0xFF0C1117),
-        surface: Color(0xFF131C25),
-        onSurface: Color(0xFFF0F5FA),
-      ),
-      textTheme: Theme.of(context).textTheme.apply(
-        bodyColor: const Color(0xFFF0F5FA),
-        displayColor: const Color(0xFFF0F5FA),
-      ),
-      dividerTheme: const DividerThemeData(color: Color(0xFF293541)),
-      filledButtonTheme: FilledButtonThemeData(
-        style: FilledButton.styleFrom(
-          backgroundColor: const Color(0xFF6DE2CF),
-          foregroundColor: const Color(0xFF0C1117),
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 22),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        ),
-      ),
-      textButtonTheme: TextButtonThemeData(
-        style: TextButton.styleFrom(
-          foregroundColor: const Color(0xFF6DE2CF),
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 18),
-        ),
-      ),
-      chipTheme: ChipThemeData(
-        backgroundColor: const Color(0xFF131C25),
-        selectedColor: const Color(0xFF173A37),
-        labelStyle: const TextStyle(color: Color(0xFFF0F5FA)),
-        side: const BorderSide(color: Color(0xFF35434F)),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      ),
-    );
-    return Theme(
-      data: darkTheme,
-      child: Scaffold(
-        backgroundColor: const Color(0xFF0C1117),
-        body: SelectionArea(
-          child: SingleChildScrollView(
-            child: Center(
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 1240),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: mobile ? 22 : 64),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 25),
-                        child: Row(
-                          children: [
-                            const Text(
-                              'ik.',
-                              style: TextStyle(
-                                fontSize: 34,
-                                fontWeight: FontWeight.w800,
-                                letterSpacing: -3,
-                              ),
-                            ),
-                            const Spacer(),
-                            if (!mobile) ...[
-                              TextButton(
-                                onPressed: () => scrollTo(projectsKey),
-                                child: Text(copy('Projets', 'Work')),
-                              ),
-                              TextButton(
-                                onPressed: () => scrollTo(aboutKey),
-                                child: Text(copy('À propos', 'About')),
-                              ),
-                              const SizedBox(width: 24),
-                            ],
-                            Row(
-                              mainAxisSize: MainAxisSize.min,
+    return Scaffold(
+      backgroundColor: const Color(0xFF0C1117),
+      body: SelectionArea(
+        child: SingleChildScrollView(
+          child: Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 1240),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: mobile ? 22 : 64),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 25),
+                      child: Row(
+                        children: [
+                          const Text.rich(
+                            TextSpan(
+                              text: 'ik',
                               children: [
-                                for (final lang in ['fr', 'en'])
-                                  TextButton(
-                                    onPressed: () =>
-                                        controller.changeLanguage(lang),
-                                    child: Text(
-                                      lang.toUpperCase(),
-                                      style: TextStyle(
-                                        color: controller.language.value == lang
-                                            ? const Color(0xFF6DE2CF)
-                                            : const Color(0xFF9AA9B9),
-                                      ),
+                                TextSpan(
+                                  text: '.',
+                                  style: TextStyle(color: AppColors.primary),
+                                ),
+                              ],
+                            ),
+                            style: TextStyle(
+                              fontSize: 34,
+                              fontWeight: FontWeight.w800,
+                              letterSpacing: -3,
+                            ),
+                          ),
+                          const Spacer(),
+                          if (!mobile) ...[
+                            TextButton(
+                              onPressed: () => scrollTo(projectsKey),
+                              child: Text(copy('Projets', 'Work')),
+                            ),
+                            TextButton(
+                              onPressed: () => scrollTo(aboutKey),
+                              child: Text(copy('À propos', 'About')),
+                            ),
+                            const SizedBox(width: 24),
+                          ],
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              for (final lang in ['fr', 'en'])
+                                TextButton(
+                                  onPressed: () =>
+                                      controller.changeLanguage(lang),
+                                  child: Text(
+                                    lang.toUpperCase(),
+                                    style: TextStyle(
+                                      color: controller.language.value == lang
+                                          ? const Color(0xFF6DE2CF)
+                                          : const Color(0xFF9AA9B9),
                                     ),
                                   ),
-                              ],
-                            ),
-                            if (!mobile)
-                              action(
-                                'Contact',
-                                controller.contactMe,
-                                filled: true,
-                              ),
-                          ],
-                        ),
-                      ),
-                      const Divider(),
-                      SizedBox(height: mobile ? 42 : 72),
-                      _labHero(mobile),
-                      SizedBox(height: mobile ? 64 : 100),
-                      Container(
-                        key: projectsKey,
-                        child: _heading(
-                          '01',
-                          copy('Une sélection de projets.', 'Selected work.'),
-                          mobile,
-                        ),
-                      ),
-                      const SizedBox(height: 24),
-                      Wrap(
-                        spacing: 8,
-                        runSpacing: 8,
-                        children: [
-                          for (var i = 0; i < 2; i++)
-                            ChoiceChip(
-                              label: Text(
-                                i == 0
-                                    ? copy(
-                                        'Applications mobiles',
-                                        'Mobile applications',
-                                      )
-                                    : copy(
-                                        'Sites & applications web',
-                                        'Websites & web apps',
-                                      ),
-                              ),
-                              selected: category == i,
-                              onSelected: (_) => setState(() {
-                                category = i;
-                                showAll = false;
-                              }),
-                            ),
-                        ],
-                      ),
-                      const SizedBox(height: 28),
-                      LayoutBuilder(
-                        builder: (context, constraints) {
-                          final width = mobile
-                              ? constraints.maxWidth
-                              : (constraints.maxWidth - 28) / 2;
-                          return Wrap(
-                            spacing: 28,
-                            runSpacing: 40,
-                            children: [
-                              for (var i = 0; i < visibleApps.length; i++)
-                                SizedBox(
-                                  width: width,
-                                  child: _project(visibleApps[i], i, mobile),
                                 ),
                             ],
-                          );
-                        },
-                      ),
-                      if (apps.length > 4)
-                        Padding(
-                          padding: const EdgeInsets.only(top: 32),
-                          child: action(
-                            showAll
-                                ? copy('Réduire la sélection', 'Show less')
-                                : copy(
-                                    'Voir tous les projets (${apps.length})',
-                                    'View all projects (${apps.length})',
-                                  ),
-                            () => setState(() => showAll = !showAll),
                           ),
-                        ),
-                      SizedBox(height: mobile ? 64 : 100),
-                      Container(
-                        key: aboutKey,
-                        child: _heading(
-                          '02',
-                          copy(
-                            'Le soin du détail.\nLa vision du produit.',
-                            'An eye for detail.\nA product mindset.',
-                          ),
-                          mobile,
-                        ),
-                      ),
-                      const SizedBox(height: 36),
-                      Flex(
-                        direction: mobile ? Axis.vertical : Axis.horizontal,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            width: mobile ? double.infinity : 300,
-                            child: AspectRatio(
-                              aspectRatio: 0.95,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(12),
-                                child: Image.asset(
-                                  controller.userProfile.profilePicture,
-                                  fit: BoxFit.cover,
-                                  alignment: Alignment.topCenter,
-                                ),
-                              ),
+                          if (!mobile)
+                            action(
+                              'Contact',
+                              controller.contactMe,
+                              filled: true,
                             ),
-                          ),
-                          SizedBox(
-                            width: mobile ? 0 : 56,
-                            height: mobile ? 28 : 0,
-                          ),
-                          ExpandedIf(
-                            enabled: !mobile,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  copy('Moi, c’est Innocent.', 'I’m Innocent.'),
-                                  style: const TextStyle(
-                                    fontSize: 32,
-                                    letterSpacing: -1,
-                                  ),
-                                ),
-                                const SizedBox(height: 16),
-                                Text(
-                                  copy(
-                                    'J’aime transformer des besoins concrets en expériences simples à utiliser. Mon travail relie la conception des interfaces, le développement et la livraison d’applications mobiles et web.',
-                                    'I turn real needs into experiences that feel simple to use. My work connects interface design, development and the delivery of mobile and web applications.',
-                                  ),
-                                  style: const TextStyle(
-                                    fontSize: 17,
-                                    height: 1.7,
-                                    color: Color(0xFF9AA9B9),
-                                  ),
-                                ),
-                                const SizedBox(height: 24),
-                                Wrap(
-                                  spacing: 8,
-                                  runSpacing: 8,
-                                  children: [
-                                    for (final skill in [
-                                      'Flutter',
-                                      'Dart',
-                                      'Firebase',
-                                      'Mobile & Web',
-                                    ])
-                                      Chip(label: Text(skill)),
-                                  ],
-                                ),
-                                const SizedBox(height: 16),
-                                action(
-                                  copy('Mon CV', 'My résumé'),
-                                  controller.downloadCV,
-                                ),
-                              ],
-                            ),
-                          ),
                         ],
                       ),
-                      const SizedBox(height: 48),
-                      for (final exp in controller.userProfile.experiences) ...[
-                        const Divider(),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 18),
-                          child: Wrap(
-                            spacing: 30,
-                            runSpacing: 8,
+                    ),
+                    const Divider(),
+                    SizedBox(height: mobile ? 42 : 72),
+                    _labHero(mobile),
+                    SizedBox(height: mobile ? 64 : 100),
+                    Container(
+                      key: projectsKey,
+                      child: _heading(
+                        '01',
+                        copy('Une sélection de projets.', 'Selected work.'),
+                        mobile,
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: [
+                        for (var i = 0; i < 2; i++)
+                          ChoiceChip(
+                            label: Text(
+                              i == 0
+                                  ? copy(
+                                      'Applications mobiles',
+                                      'Mobile applications',
+                                    )
+                                  : copy(
+                                      'Sites & applications web',
+                                      'Websites & web apps',
+                                    ),
+                            ),
+                            selected: category == i,
+                            onSelected: (_) => setState(() {
+                              category = i;
+                              showAll = false;
+                            }),
+                          ),
+                      ],
+                    ),
+                    const SizedBox(height: 28),
+                    LayoutBuilder(
+                      builder: (context, constraints) {
+                        final width = mobile
+                            ? constraints.maxWidth
+                            : (constraints.maxWidth - 28) / 2;
+                        return Wrap(
+                          spacing: 28,
+                          runSpacing: 40,
+                          children: [
+                            for (var i = 0; i < visibleApps.length; i++)
+                              SizedBox(
+                                width: width,
+                                child: _project(visibleApps[i], i, mobile),
+                              ),
+                          ],
+                        );
+                      },
+                    ),
+                    if (apps.length > 4)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 32),
+                        child: action(
+                          showAll
+                              ? copy('Réduire la sélection', 'Show less')
+                              : copy(
+                                  'Voir tous les projets (${apps.length})',
+                                  'View all projects (${apps.length})',
+                                ),
+                          () => setState(() => showAll = !showAll),
+                        ),
+                      ),
+                    SizedBox(height: mobile ? 64 : 100),
+                    Container(
+                      key: aboutKey,
+                      child: _heading(
+                        '02',
+                        copy(
+                          'Le soin du détail.\nLa vision du produit.',
+                          'An eye for detail.\nA product mindset.',
+                        ),
+                        mobile,
+                      ),
+                    ),
+                    const SizedBox(height: 36),
+                    Flex(
+                      direction: mobile ? Axis.vertical : Axis.horizontal,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          width: mobile ? double.infinity : 300,
+                          child: AspectRatio(
+                            aspectRatio: 0.95,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: Image.asset(
+                                controller.userProfile.profilePicture,
+                                fit: BoxFit.cover,
+                                alignment: Alignment.topCenter,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: mobile ? 0 : 56,
+                          height: mobile ? 28 : 0,
+                        ),
+                        ExpandedIf(
+                          enabled: !mobile,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(
-                                width: 130,
-                                child: Text(
-                                  '${exp.beginDate.year} — ${exp.endDate.year}',
-                                  style: const TextStyle(
-                                    color: Color(0xFF9AA9B9),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: mobile ? 230 : 320,
-                                child: Text(
-                                  exp.organizationName,
-                                  style: const TextStyle(
-                                    fontSize: 19,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ),
                               Text(
-                                exp.role.tr,
-                                style: const TextStyle(fontSize: 15),
+                                copy('Moi, c’est Innocent.', 'I’m Innocent.'),
+                                style: const TextStyle(
+                                  fontSize: 32,
+                                  letterSpacing: -1,
+                                ),
+                              ),
+                              const SizedBox(height: 16),
+                              Text(
+                                copy(
+                                  'J’aime transformer des besoins concrets en expériences simples à utiliser. Mon travail relie la conception des interfaces, le développement et la livraison d’applications mobiles et web.',
+                                  'I turn real needs into experiences that feel simple to use. My work connects interface design, development and the delivery of mobile and web applications.',
+                                ),
+                                style: const TextStyle(
+                                  fontSize: 17,
+                                  height: 1.7,
+                                  color: Color(0xFF9AA9B9),
+                                ),
+                              ),
+                              const SizedBox(height: 24),
+                              Wrap(
+                                spacing: 8,
+                                runSpacing: 8,
+                                children: [
+                                  for (final skill in [
+                                    'Flutter',
+                                    'Dart',
+                                    'Firebase',
+                                    'Mobile & Web',
+                                  ])
+                                    Chip(label: Text(skill)),
+                                ],
+                              ),
+                              const SizedBox(height: 16),
+                              action(
+                                copy('Mon CV', 'My résumé'),
+                                controller.downloadCV,
                               ),
                             ],
                           ),
                         ),
                       ],
+                    ),
+                    const SizedBox(height: 48),
+                    for (final exp in controller.userProfile.experiences) ...[
                       const Divider(),
-                      SizedBox(height: mobile ? 64 : 100),
-                      _heading(
-                        '03',
-                        copy('Construire. Partager.', 'Build. Share.'),
-                        mobile,
-                      ),
-                      const SizedBox(height: 28),
-                      for (final package in controller.openSourcePackages)
-                        Container(
-                          width: double.infinity,
-                          margin: const EdgeInsets.only(bottom: 16),
-                          padding: EdgeInsets.all(mobile ? 24 : 36),
-                          decoration: BoxDecoration(
-                            border: Border.all(color: const Color(0xFF293541)),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              label('OPEN SOURCE / FLUTTER'),
-                              const SizedBox(height: 20),
-                              Text(
-                                package.title,
-                                style: TextStyle(
-                                  fontSize: mobile ? 26 : 36,
-                                  letterSpacing: -1,
-                                ),
-                              ),
-                              const SizedBox(height: 12),
-                              Text(
-                                package.description.tr,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  height: 1.6,
-                                ),
-                              ),
-                              const SizedBox(height: 20),
-                              Wrap(
-                                spacing: 16,
-                                children: [
-                                  action(
-                                    'Pub.dev',
-                                    () => controller.openLink(package.pubLink),
-                                  ),
-                                  action(
-                                    'GitHub',
-                                    () =>
-                                        controller.openLink(package.githubLink),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      SizedBox(height: mobile ? 64 : 100),
-                      Container(
-                        width: double.infinity,
-                        padding: EdgeInsets.all(mobile ? 28 : 52),
-                        color: AppColors.black,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              copy(
-                                'ET SI ON CONSTRUISAIT LA SUITE ?',
-                                'LET’S BUILD WHAT’S NEXT.',
-                              ),
-                              style: const TextStyle(
-                                color: Color(0xFFBEB8AE),
-                                fontSize: 11,
-                                letterSpacing: 2,
-                              ),
-                            ),
-                            const SizedBox(height: 24),
-                            Text(
-                              copy(
-                                'Votre prochaine\nidée commence ici.',
-                                'Your next idea\nstarts here.',
-                              ),
-                              style: TextStyle(
-                                color: AppColors.white,
-                                fontSize: mobile ? 40 : 64,
-                                height: 1.1,
-                                letterSpacing: -2,
-                              ),
-                            ),
-                            const SizedBox(height: 28),
-                            FilledButton.icon(
-                              onPressed: controller.contactMe,
-                              icon: const Icon(Icons.north_east, size: 18),
-                              label: Text(
-                                copy(
-                                  'Parlons de votre projet',
-                                  'Let’s talk about your project',
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 32),
+                        padding: const EdgeInsets.symmetric(vertical: 18),
                         child: Wrap(
-                          alignment: WrapAlignment.spaceBetween,
-                          spacing: 32,
-                          runSpacing: 16,
+                          spacing: 30,
+                          runSpacing: 8,
                           children: [
-                            Text(
-                              '© ${DateTime.now().year} Innocent Konan',
-                              style: const TextStyle(fontSize: 12),
+                            SizedBox(
+                              width: 130,
+                              child: Text(
+                                '${exp.beginDate.year} — ${exp.endDate.year}',
+                                style: const TextStyle(
+                                  color: Color(0xFF9AA9B9),
+                                ),
+                              ),
                             ),
-                            Wrap(
-                              spacing: 12,
-                              children: [
-                                for (final social
-                                    in controller.userProfile.socialLinks)
-                                  TextButton(
-                                    onPressed: () =>
-                                        controller.openLink(social.url),
-                                    child: Text('${social.name} ↗'),
-                                  ),
-                              ],
+                            SizedBox(
+                              width: mobile ? 230 : 320,
+                              child: Text(
+                                exp.organizationName,
+                                style: const TextStyle(
+                                  fontSize: 19,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                            Text(
+                              exp.role.tr,
+                              style: const TextStyle(fontSize: 15),
                             ),
                           ],
                         ),
                       ),
                     ],
-                  ),
+                    const Divider(),
+                    SizedBox(height: mobile ? 64 : 100),
+                    _heading(
+                      '03',
+                      copy('Dans les coulisses', 'Behind the scenes'),
+                      mobile,
+                    ),
+                    const SizedBox(height: 24),
+                    PortfolioGallery(
+                      images: controller.carouselImages,
+                      french: controller.language.value == 'fr',
+                    ),
+                    SizedBox(height: mobile ? 64 : 100),
+                    _heading(
+                      '04',
+                      copy('Construire. Partager.', 'Build. Share.'),
+                      mobile,
+                    ),
+                    const SizedBox(height: 28),
+                    for (final package in controller.openSourcePackages)
+                      Container(
+                        width: double.infinity,
+                        margin: const EdgeInsets.only(bottom: 16),
+                        padding: EdgeInsets.all(mobile ? 24 : 36),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: const Color(0xFF293541)),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            label('OPEN SOURCE / FLUTTER'),
+                            const SizedBox(height: 20),
+                            Text(
+                              package.title,
+                              style: TextStyle(
+                                fontSize: mobile ? 26 : 36,
+                                letterSpacing: -1,
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            Text(
+                              package.description.tr,
+                              style: const TextStyle(fontSize: 16, height: 1.6),
+                            ),
+                            const SizedBox(height: 20),
+                            Wrap(
+                              spacing: 16,
+                              children: [
+                                action(
+                                  'Pub.dev',
+                                  () => controller.openLink(package.pubLink),
+                                ),
+                                action(
+                                  'GitHub',
+                                  () => controller.openLink(package.githubLink),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    SizedBox(height: mobile ? 64 : 100),
+                    Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.all(mobile ? 28 : 52),
+                      color: AppColors.black,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            copy(
+                              'ET SI ON CONSTRUISAIT LA SUITE ?',
+                              'LET’S BUILD WHAT’S NEXT.',
+                            ),
+                            style: const TextStyle(
+                              color: Color(0xFFBEB8AE),
+                              fontSize: 11,
+                              letterSpacing: 2,
+                            ),
+                          ),
+                          const SizedBox(height: 24),
+                          Text(
+                            copy(
+                              'Votre prochaine\nidée commence ici.',
+                              'Your next idea\nstarts here.',
+                            ),
+                            style: TextStyle(
+                              color: AppColors.white,
+                              fontSize: mobile ? 40 : 64,
+                              height: 1.1,
+                              letterSpacing: -2,
+                            ),
+                          ),
+                          const SizedBox(height: 28),
+                          FilledButton.icon(
+                            onPressed: controller.contactMe,
+                            icon: const Icon(Icons.north_east, size: 18),
+                            label: Text(
+                              copy(
+                                'Parlons de votre projet',
+                                'Let’s talk about your project',
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 32),
+                      child: Wrap(
+                        alignment: WrapAlignment.spaceBetween,
+                        spacing: 32,
+                        runSpacing: 16,
+                        children: [
+                          Text(
+                            '© ${DateTime.now().year} Innocent Konan',
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                          Wrap(
+                            spacing: 12,
+                            children: [
+                              for (final social
+                                  in controller.userProfile.socialLinks)
+                                TextButton(
+                                  onPressed: () =>
+                                      controller.openLink(social.url),
+                                  child: Text('${social.name} ↗'),
+                                ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),

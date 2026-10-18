@@ -13,7 +13,7 @@ class AppDetailsDialog extends GetWidget<HomeController> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final isMobile = screenWidth < 800;
+    final isMobile = screenWidth < 1000;
     final theme = context.theme;
 
     return Center(
@@ -24,7 +24,7 @@ class AppDetailsDialog extends GetWidget<HomeController> {
           height: isMobile ? Get.height * 0.9 : 650,
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
-            color: AppColors.white,
+            color: AppColors.surface,
             borderRadius: BorderRadius.circular(24),
             boxShadow: [
               BoxShadow(
@@ -78,7 +78,7 @@ class AppDetailsDialog extends GetWidget<HomeController> {
                 Text(
                   app.category.tr,
                   style: theme.textTheme.bodySmall?.copyWith(
-                    color: Colors.grey[600],
+                    color: AppColors.muted,
                   ),
                 ),
               ],
@@ -182,8 +182,8 @@ class AppDetailsDialog extends GetWidget<HomeController> {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(app.image),
-                  fit: BoxFit.cover,
-                  alignment: Alignment.topCenter,
+                  fit: BoxFit.contain,
+                  alignment: Alignment.center,
                 ),
               ),
             ),
@@ -289,23 +289,25 @@ class AppDetailsDialog extends GetWidget<HomeController> {
       children: [
         Icon(icon, size: 20, color: AppColors.primary),
         const SizedBox(width: 8),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              label,
-              style: theme.textTheme.labelSmall?.copyWith(
-                color: Colors.grey[600],
-                fontWeight: FontWeight.bold,
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                label,
+                style: theme.textTheme.labelSmall?.copyWith(
+                  color: AppColors.muted,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            Text(
-              value,
-              style: theme.textTheme.bodyMedium?.copyWith(
-                fontWeight: FontWeight.w600,
+              Text(
+                value,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ],
     );
@@ -316,11 +318,13 @@ class AppDetailsDialog extends GetWidget<HomeController> {
       children: [
         Icon(icon, size: 22, color: AppColors.primary),
         const SizedBox(width: 10),
-        Text(
-          title,
-          style: theme.textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.bold,
-            color: Colors.black87,
+        Expanded(
+          child: Text(
+            title,
+            style: theme.textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.bold,
+              color: AppColors.text,
+            ),
           ),
         ),
       ],
@@ -332,13 +336,16 @@ class AppDetailsDialog extends GetWidget<HomeController> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
       color: AppColors.background,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
+      child: Wrap(
+        alignment: WrapAlignment.end,
+        crossAxisAlignment: WrapCrossAlignment.center,
+        spacing: 12,
+        runSpacing: 12,
         children: [
           Text(
             "available_on".tr,
             style: theme.textTheme.bodySmall?.copyWith(
-              color: Colors.grey[600],
+              color: AppColors.muted,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -369,12 +376,16 @@ class AppDetailsDialog extends GetWidget<HomeController> {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(Icons.language, color: Colors.white, size: 18),
+                    const Icon(
+                      Icons.language,
+                      color: AppColors.onPrimary,
+                      size: 18,
+                    ),
                     const SizedBox(width: 8),
                     Text(
                       "visit_website".tr,
                       style: theme.textTheme.labelMedium?.copyWith(
-                        color: Colors.white,
+                        color: AppColors.onPrimary,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

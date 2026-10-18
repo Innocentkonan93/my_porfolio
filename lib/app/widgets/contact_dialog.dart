@@ -10,7 +10,7 @@ class ContactDialog extends GetWidget<HomeController> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final isMobile = screenWidth < 800;
+    final isMobile = screenWidth < 1000;
     final theme = context.theme;
 
     return Center(
@@ -21,7 +21,7 @@ class ContactDialog extends GetWidget<HomeController> {
           height: isMobile ? Get.height * 0.8 : 550,
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
-            color: AppColors.white,
+            color: AppColors.surface,
             borderRadius: BorderRadius.circular(24),
             boxShadow: [
               BoxShadow(
@@ -68,7 +68,7 @@ class ContactDialog extends GetWidget<HomeController> {
                 Text(
                   controller.userProfile.function,
                   style: theme.textTheme.bodySmall?.copyWith(
-                    color: Colors.grey[600],
+                    color: AppColors.muted,
                   ),
                 ),
               ],
@@ -155,8 +155,8 @@ class ContactDialog extends GetWidget<HomeController> {
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(controller.userProfile.profilePicture),
-                fit: BoxFit.cover,
-                alignment: Alignment.topCenter,
+                fit: BoxFit.contain,
+                alignment: Alignment.center,
               ),
             ),
           ),
@@ -202,7 +202,7 @@ class ContactDialog extends GetWidget<HomeController> {
         _buildContactItem(
           theme: theme,
           icon: Icons.email,
-          color: Colors.redAccent,
+          color: AppColors.primary,
           title: 'Email',
           value: controller.userProfile.email,
           onTap: () {
@@ -217,7 +217,7 @@ class ContactDialog extends GetWidget<HomeController> {
         _buildContactItem(
           theme: theme,
           icon: Icons.chat,
-          color: Colors.green,
+          color: AppColors.primary,
           title: 'WhatsApp',
           value: controller.userProfile.phone,
           onTap: () {
@@ -232,7 +232,7 @@ class ContactDialog extends GetWidget<HomeController> {
         _buildContactItem(
           theme: theme,
           icon: Icons.phone,
-          color: Colors.blueAccent,
+          color: AppColors.primary,
           title: 'Phone',
           value: controller.userProfile.phone,
           onTap: () {
@@ -294,11 +294,13 @@ class ContactDialog extends GetWidget<HomeController> {
       children: [
         Icon(icon, size: 22, color: AppColors.primary),
         const SizedBox(width: 10),
-        Text(
-          title,
-          style: theme.textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.bold,
-            color: Colors.black87,
+        Expanded(
+          child: Text(
+            title,
+            style: theme.textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.bold,
+              color: AppColors.text,
+            ),
           ),
         ),
       ],
@@ -341,7 +343,7 @@ class ContactDialog extends GetWidget<HomeController> {
                     title,
                     style: theme.textTheme.bodyMedium?.copyWith(
                       fontWeight: FontWeight.bold,
-                      color: Colors.grey[700],
+                      color: AppColors.muted,
                     ),
                   ),
                   const SizedBox(height: 4),

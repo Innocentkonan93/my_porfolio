@@ -21,15 +21,6 @@
                         "value": "max-age=604800"
                     }
                 ]
-            },
-            {
-                "source": "**/*.@(js|css)",
-                "headers": [
-                    {
-                        "key": "Content-Encoding",
-                        "value": "gzip"
-                    }
-                ]
             }
         ],
         "cleanUrls": true,

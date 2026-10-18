@@ -1,38 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'app_colors.dart';
 
-final ThemeData appTheme = ThemeData(
-  useMaterial3: true,
-  scaffoldBackgroundColor: AppColors.background,
-  colorScheme: ColorScheme.fromSeed(
-    seedColor: AppColors.primary,
-    primary: AppColors.primary,
-    surface: AppColors.background,
-    onSurface: AppColors.black,
+final ThemeData appTheme = buildAppTheme();
+
+ThemeData buildAppTheme({TextTheme? textTheme}) => ThemeData(
+  brightness: Brightness.dark,
+  scaffoldBackgroundColor: const Color(0xFF0C1117),
+  colorScheme: const ColorScheme.dark(
+    primary: Color(0xFF6DE2CF),
+    onPrimary: Color(0xFF0C1117),
+    surface: Color(0xFF131C25),
+    onSurface: Color(0xFFF0F5FA),
   ),
-  textTheme: GoogleFonts.outfitTextTheme().apply(
-    bodyColor: AppColors.black,
-    displayColor: AppColors.black,
-  ),
-  dividerTheme: const DividerThemeData(color: AppColors.grey, thickness: 1),
+  textTheme:
+      (textTheme ?? GoogleFonts.outfitTextTheme(ThemeData.dark().textTheme))
+          .apply(
+            bodyColor: const Color(0xFFF0F5FA),
+            displayColor: const Color(0xFFF0F5FA),
+          ),
+  dividerTheme: const DividerThemeData(color: Color(0xFF293541)),
   filledButtonTheme: FilledButtonThemeData(
     style: FilledButton.styleFrom(
+      backgroundColor: const Color(0xFF6DE2CF),
+      foregroundColor: const Color(0xFF0C1117),
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 22),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     ),
   ),
   textButtonTheme: TextButtonThemeData(
     style: TextButton.styleFrom(
-      foregroundColor: AppColors.black,
+      foregroundColor: const Color(0xFF6DE2CF),
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 18),
     ),
   ),
   chipTheme: ChipThemeData(
-    backgroundColor: Colors.transparent,
-    selectedColor: const Color(0xFFE9D8CC),
-    side: const BorderSide(color: AppColors.grey),
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3)),
-    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+    backgroundColor: const Color(0xFF131C25),
+    selectedColor: const Color(0xFF173A37),
+    labelStyle: const TextStyle(color: Color(0xFFF0F5FA)),
+    side: const BorderSide(color: Color(0xFF35434F)),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
   ),
 );
