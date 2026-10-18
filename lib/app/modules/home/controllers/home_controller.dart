@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:my_portfolio/app/data/models/app_model.dart';
+import 'package:my_portfolio/app/data/models/package_model.dart';
 import 'package:my_portfolio/app/data/utils/constants.dart';
 import 'package:my_portfolio/app/services/pdf_generator.dart';
 import 'package:my_portfolio/app/widgets/contact_dialog.dart';
@@ -78,6 +79,8 @@ class HomeController extends GetxController {
   // Assuming there might be web apps later, currently list seems to be all mobile in constants
   List<AppModel> get webApplications =>
       appsList.where((e) => e.category != 'cat_mobile_app').toList();
+
+  List<PackageModel> get openSourcePackages => packagesList;
 
   Future<void> openLink(String link) async {
     if (await canLaunchUrl(Uri.parse(link))) {

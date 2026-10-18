@@ -1,6 +1,7 @@
 import 'package:my_portfolio/app/data/models/app_model.dart';
 import 'package:my_portfolio/app/data/models/exp_model.dart';
 import 'package:my_portfolio/app/data/models/user_model.dart';
+import 'package:my_portfolio/app/data/models/package_model.dart';
 
 var appsList = [
   AppModel(
@@ -301,6 +302,22 @@ var appsList = [
     createdAt: '2024-01-10',
     updatedAt: '2026-02-20',
   ),
+
+  AppModel(
+    id: 19,
+    title: 'Lemon SARL',
+    tasks: 'tasks_lemon_sarl',
+    role: 'role_web_mobile_dev',
+    stack: ['Flutter Web', 'Dart', 'Laravel', 'MySQL'],
+    description: 'desc_lemon_sarl',
+    icon: 'assets/icons/lemon.png',
+    image: 'assets/images/lemon.png',
+    isMobileApp: false,
+    links: ["https://lemonsarl.com"],
+    category: 'cat_web_app',
+    createdAt: '2026-01-10',
+    updatedAt: '2026-02-20',
+  ),
 ];
 
 final user = UserModel(
@@ -402,3 +419,30 @@ final user = UserModel(
     ),
   ],
 );
+
+final packagesList = [
+  const PackageModel(
+    id: 1,
+    title: 'book_view_flutter',
+    description: 'desc_book_view_flutter',
+    tags: ['3D UI', 'Animation', 'Widget', 'Open Source'],
+    version: '0.2.0',
+    pubLink: 'https://pub.dev/packages/book_view_flutter',
+    githubLink: 'https://github.com/innocentkonan93/book_view_flutter',
+    likes: 1,
+    pubPoints: 150,
+    popularity: 52.0,
+  ),
+  // const PackageModel(
+  //   id: 2,
+  //   title: 'rx_persistor',
+  //   description: 'desc_rx_persistor',
+  //   tags: ['GetX', 'State Persistence', 'RxDart', 'Caching'],
+  //   version: '0.9.5',
+  //   pubLink: 'https://pub.dev/packages/rx_persistor',
+  //   githubLink: 'https://github.com/innocentkonan93/rx_persistor',
+  //   likes: 12,
+  //   pubPoints: 110,
+  //   popularity: 81.0,
+  // ),
+];
