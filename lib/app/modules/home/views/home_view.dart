@@ -1,3 +1,4 @@
+import 'widgets/portfolio_gallery.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../configs/app_colors.dart';
@@ -79,8 +80,16 @@ class _HomeViewState extends State<HomeView> {
                       padding: const EdgeInsets.symmetric(vertical: 25),
                       child: Row(
                         children: [
-                          const Text(
-                            'ik.',
+                          const Text.rich(
+                            TextSpan(
+                              text: 'ik',
+                              children: [
+                                TextSpan(
+                                  text: '.',
+                                  style: TextStyle(color: AppColors.primary),
+                                ),
+                              ],
+                            ),
                             style: TextStyle(
                               fontSize: 34,
                               fontWeight: FontWeight.w800,
@@ -301,6 +310,17 @@ class _HomeViewState extends State<HomeView> {
                     SizedBox(height: mobile ? 64 : 100),
                     _heading(
                       '03',
+                      copy('Dans les coulisses', 'Behind the scenes'),
+                      mobile,
+                    ),
+                    const SizedBox(height: 24),
+                    PortfolioGallery(
+                      images: controller.carouselImages,
+                      french: controller.language.value == 'fr',
+                    ),
+                    SizedBox(height: mobile ? 64 : 100),
+                    _heading(
+                      '04',
                       copy('Construire. Partager.', 'Build. Share.'),
                       mobile,
                     ),
