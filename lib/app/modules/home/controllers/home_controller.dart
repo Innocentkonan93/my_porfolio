@@ -64,6 +64,9 @@ class HomeController extends GetxController {
   final webApps = appsList
       .where((app) => app.category == 'cat_web_app')
       .toList();
+  List<AppModel> get openSourceProjects =>
+      appsList.where((e) => e.category == 'cat_open_source').toList();
+
   // Note: currently appsList usually contains mobile apps based on previous view,
   // but let's filter just in case or keep logic flexible.
   // Since the original view passed `controller` to `ExpListView` and `AppsListView`,

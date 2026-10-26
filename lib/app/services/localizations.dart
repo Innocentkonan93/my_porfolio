@@ -8,18 +8,20 @@ class Localization extends Translations {
       'work_with_me': 'Work With Me',
       'my_resume': 'My Resume',
       'contact_me': 'Contact Me',
-      'flutter_developer': 'Flutter Developer',
+      'flutter_developer': 'Flutter & Laravel Developer',
       'headline':
-          'I build high-performance mobile apps with Flutter — from idea to App Store & Play Store.',
+          'I build mobile apps with Flutter and backend services with Laravel — from product idea to launch.',
       'my_projects': 'My Projects',
       'mobile_apps': 'Mobile Apps',
       'web_apps': 'Web Apps',
+      'open_source': 'Open Source',
       'experiences': 'Experiences',
       'copyright': 'Copyright ©',
       'made_with_flutter': 'Made with Flutter by Innocent Konan',
       'present': 'Present',
       'cat_mobile_app': 'Mobile App',
       'role_mobile_dev': 'Mobile Developer',
+      'role_flutter_package': 'Flutter package maintainer',
       'role_web_mobile_dev': 'Web & Mobile Developer',
       'desc_cutit': 'The best and easiest video cutting app.',
       'desc_cvf': 'The ultimate app for managing driver orders.',
@@ -40,7 +42,10 @@ class Localization extends Translations {
       'desc_cndh':
           'Real-time alert application for reporting human rights violations and electoral incidents.',
       'cat_web_app': 'Web App',
+      'cat_open_source': 'Open Source Package',
       'desc_portfolio': 'The official portfolio application of Innocent Konan.',
+      'desc_book_view_flutter':
+          'A customizable Flutter book-card widget with a realistic 3D spine, themes, badges, and reading progress.',
       'tasks_cutit':
           'Full design and development. Native video editing (FFmpeg), GetX state management, and Firebase analytics.',
       'tasks_cvf':
@@ -71,6 +76,8 @@ class Localization extends Translations {
           'Complete note-taking app. Cloud sync, offline mode, and intuitive data organization.',
       'tasks_portfolio':
           'Personal portfolio in Flutter Web. Responsive design, smooth animations, and Firebase Hosting.',
+      'tasks_book_view_flutter':
+          'Created and published a reusable Flutter package with themed book cards, asset and network images, badges, and reading progress.',
       'overview': 'Overview',
       'key_contributions': 'Key Contributions',
       'available': 'Available',
@@ -89,18 +96,20 @@ class Localization extends Translations {
       'work_with_me': 'Contactez-moi',
       'my_resume': 'CV',
       'contact_me': 'Contactez-moi',
-      'flutter_developer': 'Développeur Flutter',
+      'flutter_developer': 'Développeur Flutter & Laravel',
       'headline':
-          'Je construis des applications mobiles haute performance avec Flutter — de l\'idée à l\'App Store et au Play Store.',
+          'Je développe des applications mobiles avec Flutter et des services backend avec Laravel, de l\'idée au lancement.',
       'my_projects': 'Mes Projets',
       'mobile_apps': 'Apps Mobiles',
       'web_apps': 'Apps Web',
+      'open_source': 'Open source',
       'experiences': 'Expériences',
       'copyright': 'Copyright ©',
       'made_with_flutter': 'Réalisé avec Flutter par Innocent Konan',
       'present': 'Présent',
       'cat_mobile_app': 'Apps Mobile',
       'role_mobile_dev': 'Développeur Mobile',
+      'role_flutter_package': 'Créateur de package Flutter',
       'role_web_mobile_dev': 'Développeur Web & Mobile',
       'desc_cutit':
           'La meilleure et la plus simple application de découpe vidéo.',
@@ -130,10 +139,13 @@ class Localization extends Translations {
       'desc_zoknot':
           'L\'application de prise de notes la plus intelligente et intuitive.',
       'cat_web_app': 'App Web',
+      'cat_open_source': 'Package open source',
       'desc_cndh':
           'Application d’alerte en temps réel pour signaler les violations des Droits de l’Homme et les incidents électoraux.',
       'desc_portfolio':
           'L\'application officielle de portfolio d\'Innocent Konan.',
+      'desc_book_view_flutter':
+          'Un widget Flutter personnalisable pour afficher des livres avec une tranche 3D, des thèmes, des badges et une barre de progression.',
       'tasks_cutit':
           'Conception et développement complet. Édition vidéo native (FFmpeg), gestion d\'état GetX et Firebase analytics.',
       'tasks_cvf':
@@ -164,6 +176,8 @@ class Localization extends Translations {
           'Création complète de l\'app de notes. Synchro Cloud, mode hors ligne et organisation intuitive.',
       'tasks_portfolio':
           'Portfolio personnel en Flutter Web. Design responsive, animations fluides et Firebase Hosting.',
+      'tasks_book_view_flutter':
+          'Création et publication d\'un package Flutter réutilisable avec cartes de livres thémables, images locales ou réseau, badges et progression de lecture.',
       'tasks_cndh':
           'Système de signalement temps réel, intégration géolocalisation incidents, support mode hors ligne et sécurité confidentialité.',
       'overview': 'Aperçu',

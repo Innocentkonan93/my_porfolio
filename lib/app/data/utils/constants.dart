@@ -301,13 +301,31 @@ var appsList = [
     createdAt: '2024-01-10',
     updatedAt: '2026-02-20',
   ),
+  AppModel(
+    id: 19,
+    title: 'BookView Flutter',
+    description: 'desc_book_view_flutter',
+    tasks: 'tasks_book_view_flutter',
+    role: 'role_flutter_package',
+    stack: ['Flutter', 'Dart', 'Pub.dev'],
+    icon: 'assets/images/book_view_flutter.png',
+    image: 'assets/images/book_view_flutter.png',
+    isMobileApp: false,
+    links: [
+      'https://github.com/Innocentkonan93/book_view_flutter',
+      'https://pub.dev/packages/book_view_flutter',
+    ],
+    category: 'cat_open_source',
+    createdAt: '2026-03-28',
+    updatedAt: '2026-08-21',
+  ),
 ];
 
 final user = UserModel(
   name: 'Innocent Konan',
   email: 'konankoffiinnocent@gmail.com',
   phone: '+225 07 49 56 65 61',
-  function: "Flutter Developer",
+  function: "Flutter & Laravel Developer",
   profilePicture: 'assets/images/ikonan.png',
   socialLinks: [
     SocialNetworkModel(

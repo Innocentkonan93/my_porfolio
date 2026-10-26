@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_portfolio/app/widgets/custom_button.dart';
+
 import '../apps_list_view.dart';
 import '../exp_list_view.dart';
 import '../../controllers/home_controller.dart';
@@ -40,9 +41,16 @@ class ProjectTabs extends GetView<HomeController> {
                 const SizedBox(width: 10),
                 CustomButton(
                   onPressed: () => controller.currentTab.value = 2,
-                  label: "experiences".tr,
-                  icon: currentTab == 2 ? Icons.work : Icons.work_outline,
+                  label: "open_source".tr,
+                  icon: Icons.code,
                   isActive: currentTab == 2,
+                ),
+                const SizedBox(width: 10),
+                CustomButton(
+                  onPressed: () => controller.currentTab.value = 3,
+                  label: "experiences".tr,
+                  icon: currentTab == 3 ? Icons.work : Icons.work_outline,
+                  isActive: currentTab == 3,
                 ),
               ],
             );
@@ -79,6 +87,11 @@ class ProjectTabs extends GetView<HomeController> {
           apps: controller.webApplications,
         );
       case 2:
+        return AppsListView(
+          controller: controller,
+          apps: controller.openSourceProjects,
+        );
+      case 3:
         return ExpListView(controller: controller);
       default:
         return const SizedBox.shrink();
